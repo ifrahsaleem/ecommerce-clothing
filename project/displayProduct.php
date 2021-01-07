@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -101,8 +100,8 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li ><a href="#">Home</a></li>
-						<li class="active"><a href="#">Add Product</a></li>
-						<li><a href="./displayProduct.php">Product</a></li>
+						<li ><a href="./addProduct.php">Add Product</a></li>
+						<li class="active"> <a href="#">Product</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -121,8 +120,8 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">Products</a></li>
-							<li class="active">Add</li>
+							<li class="active"><a href="#">Products</a></li>
+							<li >Add</li>
 						</ul>
 					</div>
 				</div>
@@ -132,45 +131,30 @@
 		</div>
 		<!-- /BREADCRUMB -->
 
-		<!-- FORM-->
-		<div>
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
 			<div class="container">
-		<form action="pm_addProduct.php" method="POST" enctype="multipart/form-data">
-			<div class="form-group">
-			  <label for="exampleFormControlInput1">Name</label>
-			  <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" placeholder="Halter Top">
+				<!-- row -->
+				<div class="row">
+					<!-- STORE -->
+					<div id="store" class="col-md-9">
+						<!-- store products -->
+						<div class="row">
+							<!-- product -->
+							
+							<!-- /product -->
+					</div>
+					<!-- /STORE -->
+				</div>
+				<!-- /row -->
 			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput2">Price</label>
-				<input type="text" class="form-control" id="exampleFormControlInput2" name="Price" placeholder="199">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Quantity</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" name="Quantity" placeholder="100">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Size</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" placeholder="L">
-			</div>
-
-			<?php 
-			include "getCategory.php"; 
-			?>
-			
-			<div class="form-group">
-				<input type="file" id="myFile" name="Picture">
-			</div>
-			<div class="form-group">
-  				<input type="submit" >
-			</div>
-		  </form>
+			<!-- /container -->
 		</div>
-	</div>
+		<!-- /SECTION -->
 
-		<!-- FORM-->
-
-		<!-- FOOTER -->
-		<footer id="footer">
+<!-- FOOTER -->
+<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
@@ -247,6 +231,7 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
+
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>
