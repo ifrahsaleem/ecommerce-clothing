@@ -2240,3 +2240,23 @@ textarea.input {
     margin-top: 10px;
   }
 }
+
+/* BUTTON */
+
+input[type="submit"] {
+  padding: 5px 15px;
+  background: #ccc;
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type="file"] {
+  padding: 5px 15px;
+  background: #ccc;
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}

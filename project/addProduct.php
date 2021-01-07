@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -102,9 +103,9 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Add Product</a></li>
-						<li><a href="#">Product</a></li>
+						<li ><a href="#">Home</a></li>
+						<li class="active"><a href="#">Add Product</a></li>
+						<li><a href="./pm_displayProduct.html">Product</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -124,7 +125,7 @@
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
 							<li><a href="#">Products</a></li>
-							<li class="active">Results</li>
+							<li class="active">Add</li>
 						</ul>
 					</div>
 				</div>
@@ -137,46 +138,37 @@
 		<!-- FORM-->
 		<div>
 			<div class="container">
-		<form>
+		<form action="pm_addProduct.php" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 			  <label for="exampleFormControlInput1">Name</label>
-			  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Halter Top">
+			  <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" placeholder="Halter Top">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlInput2">Price</label>
-				<input type="email" class="form-control" id="exampleFormControlInput2" placeholder="199">
+				<input type="text" class="form-control" id="exampleFormControlInput2" name="Price" placeholder="199">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlInput3">Quantity</label>
-				<input type="email" class="form-control" id="exampleFormControlInput3" placeholder="100">
+				<input type="text" class="form-control" id="exampleFormControlInput3" name="Quantity" placeholder="100">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlInput3">Size</label>
-				<input type="email" class="form-control" id="exampleFormControlInput3" placeholder="L">
+				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" placeholder="L">
+			</div>
+
+			<?php 
+			include "getCategory.php"; 
+			?>
+			
+			<div class="form-group">
+				<input type="file" id="myFile" name="Picture">
 			</div>
 			<div class="form-group">
-			  <label for="exampleFormControlSelect1">Example select</label>
-			  <select class="form-control" id="exampleFormControlSelect1">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			  </select>
+  				<input type="submit" >
 			</div>
-			<div class="form-group">
-			  <label for="exampleFormControlSelect2">Example multiple select</label>
-			  <select multiple class="form-control" id="exampleFormControlSelect2">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			  </select>
-			</div>
-		</div>
-		</div>
 		  </form>
+		</div>
+	</div>
 
 		<!-- FORM-->
 
