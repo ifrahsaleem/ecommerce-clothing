@@ -1,34 +1,15 @@
+<?php
+
+	session_start();
+
+?>
+
+
 <html>
-<body>
-    <div class="col-md-4 col-xs-6">
-        <div class="product">
-            <div class="product-img">
-                <img src="./img/product01.png" alt="">
-                <div class="product-label">
-                </div>
-            </div>
-            <div class="product-body">
-                <p class="product-category">Category</p>
-                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                <h4 class="product-price">$980.00 </h4>
-                <div class="product-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <div class="product-btns">
-                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                </div>
-            </div>
-            <div class="add-to-cart">
-                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-            </div>
-        </div>
-    </div>
+    <body>
+    <form action="" method="POST" enctype="multipart/form-data">
+
+
 
 <?php
 
@@ -40,12 +21,38 @@ $result = mysqli_query($db, $sql_statement);
 
 while($row = mysqli_fetch_assoc($result))
 {
-    $CName = $row['Name'];
-    $cid = $row['cid'];
-
-    echo "<option>" . $CName . " - ". $cid . "</option>";
-}
+    $categoryName = $row['categoryName'];
+    $pid = $row['pid'];
+    $PMid = $row['PMid'];
+    $Name = $row['Name'];
+    $Price = $row['Price'];
+    $Quantity = $row['Quantity'];
+    $Size = $row['Size'];
+    $Picture = $row['Picture'];
 ?>
-
+        <div class="col-md-6 col-xs-6">
+            <!-- <div class="col-md-4 col-xs-6"></div> -->
+            <div class="product">
+                <div class="product-img">
+                <?php echo '<img src="data:image;base64,'.base64_encode($Picture).'" alt="Image">' ?>
+                </div>
+                <div class="product-body">
+                    <p class="product-category"><?php echo $categoryName?></p>
+                    <h3 class="product-name"><a href="#"><?php echo $Name?></a></h3>
+                    <h4 class="product-price"><?php echo $Price?>TL</h4>
+                    <div class="product-rating">
+                    </div>
+                    <div class="product-btns">
+                        <button class="add-to-wishlist"><i class="fa fa-trash"></i><span class="tooltipp">Delete</span></button>
+                        <button class="add-to-compare"><i class="fa fa-edit"></i><span class="tooltipp">Edit</span></button>
+                    </div>
+                </div>
+                <div class="add-to-cart">
+                    <h6 class="product-size" ><a href="#"><?php echo $Size?></a></h6>
+                </div>
+            </div>
+        </div>
+        </form>
+    <?php } ?>
 </body>
 </html>

@@ -92,8 +92,11 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
+                        
                     </form>
-
+                    <br>
+                    <button onclick="location.href = './pm_signUp.php';" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+                    
                 </div>
 
                 <div class="col-3"></div>  

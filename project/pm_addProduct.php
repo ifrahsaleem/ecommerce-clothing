@@ -1,38 +1,33 @@
 <?php
-
+session_start();
 include "config.php";
 
-$Name = $_POST['Name'];
-$Price = $_POST['Price'];
-$Quantity = $_POST['Quantity'];
-$Size = $_POST['Size'];
-$cid = $_POST['cid'];
-$Picture = $_FILES['Picture'];
+if(isset($_POST['upload']))
+{
 
-if (getimagesize($_FILES['imagefile']['tmp_name']) == false) {
+    $Picture = addslashes(file_get_contents($_FILES["Picture"]["tmp_name"]));
+    $Name = $_POST['Name'];
+    $Price = $_POST['Price'];
+    $Quantity = $_POST['Quantity'];
+    $Size = $_POST['Size'];
+    $cid = explode(' ', $_POST['cid'])[1];
+    $PMid = $_SESSION['userId'];
 
-    echo "<br />Please Select An Image.";
+    $sql_statement = "INSERT INTO product(cid,  PMid, Name, Price, Quantity, Size, Picture) VALUES('$cid', '$PMid', '$Name', '$Price', '$Quantity', '$Size',  '$Picture')";
     
-    } else {
-    
-    
-    
-    //declare variables
-    
-    $image = $_FILES['imagefile']['tmp_name'];
-    
-    $name = $_FILES['imagefile']['name'];
-    
-    $image = base64_encode(file_get_contents(addslashes($image)));
+    $result = mysqli_query($db, $sql_statement);
+ 
+    if($result > 0)
+    {
+        echo 'Product successfully added.';
+        header("Location: displayProduct.php");
     }
 
-
-if(isset($_POST['Name'], $_POST['Price'], $_POST['Quantity'], $_POST['Size'], $_POST['cid'], $_FILES['Picture']))
-{
-    $sql_statement = "INSERT INTO product(pmid ,cid, Name, Price, Quantity, Size, cid, Picture) VALUES('123462', $cid, $Name, $Price, $Quantity, $Size, $cid, $Picture)";
+    else
+    echo 'Product not added.' . $result;
 }
 
-else 
+else
 {
     echo "The form is not set.";
 }

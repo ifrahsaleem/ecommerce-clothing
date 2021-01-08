@@ -1,5 +1,12 @@
 <?php
 
+	session_start();
+
+?>
+
+
+<?php
+
     include "config.php";
 
     if(isset($_POST['PMpass'], $_POST['PMusername']))
@@ -20,9 +27,10 @@
                 $_SESSION['authorized'] = true;
                 //set User Id
                 $_SESSION['userId'] = $row['PMid']; 
+                $_SESSION['username'] = $row['PMusername'];
 
-                echo $PMname . " logged in successfully.";
-                header("Location: displayProduct.php");
+                echo $PMusername . " logged in successfully.";
+                header("Location: pm_homePage.php");
             }
 
             else

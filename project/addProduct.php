@@ -1,3 +1,8 @@
+<?php
+
+	session_start();
+	include "pm_authCheck.php"
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,10 +163,10 @@
 			?>
 			
 			<div class="form-group">
-				<input type="file" id="myFile" name="Picture">
+				<input type="file" id="Picture" name="Picture">
 			</div>
 			<div class="form-group">
-  				<input type="submit" >
+  				<input type="submit" name="upload" value="Submit" >
 			</div>
 		  </form>
 		</div>
