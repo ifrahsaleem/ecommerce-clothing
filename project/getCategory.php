@@ -18,9 +18,7 @@ while($row = mysqli_fetch_assoc($result))
 {
     $CName = $row['Name'];
     $cid = $row['cid'];
-
-    //echo $cid; 
-
+    
     echo "<option>" . $CName . " " . $cid . "</option>";
 }
 ?>

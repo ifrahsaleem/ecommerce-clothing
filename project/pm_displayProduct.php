@@ -1,9 +1,3 @@
-<?php
-
-	session_start();
-
-?>
-
 
 <html>
     <body>
@@ -43,7 +37,7 @@ while($row = mysqli_fetch_assoc($result))
                     <div class="product-rating">
                     </div>
                     <div class="product-btns">
-                        <button class="add-to-wishlist"><i class="fa fa-trash"></i><span class="tooltipp">Delete</span></button>
+                        <a href="pm_deleteProduct.php?pid=<?php echo $row['pid'];?>"><button class="add-to-wishlist"><i class="fa fa-trash"></i><span class="tooltipp">Delete</span></button></a>
                         <button class="add-to-compare"><i class="fa fa-edit"></i><span class="tooltipp">Edit</span></button>
                     </div>
                 </div>

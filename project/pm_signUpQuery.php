@@ -16,12 +16,20 @@
         $result = mysqli_query($db, $sql_statement);
 
         if($result > 0)
+        {
             echo $PMname . " signed up successfully.";
+            echo '<script type="text/javascript">alert("Successfully registered!");';
+            echo 'window.location.href = "pm_loginPage.php";';
+            echo '</script>';
+        }
 
         else
+        {
             echo "Could not sign up!";
-
-       // header("Location: pm_signUp.php");
+            echo '<script type="text/javascript">alert("Could not signup!");';
+            echo 'window.location.href = "pm_signUp.php";';
+            echo '</script>';
+        }
     }
 
     else 

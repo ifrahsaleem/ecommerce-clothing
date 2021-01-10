@@ -53,6 +53,11 @@
 					</ul>
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<?php if($_SESSION['authorized'])
+									{
+										?>
+										<li><a href="pm_logOut.php">Log Out</a></li>
+								<?php	} ?>
 					</ul>
 				</div>
 			</div>
@@ -208,6 +213,11 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
+									<?php if($_SESSION['authorized'])
+									{
+										?>
+										<li><a href="pm_logOut.php">Log Out</a></li>
+								<?php	} ?>
 								</ul>
 							</div>
 						</div>

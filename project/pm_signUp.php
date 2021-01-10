@@ -99,26 +99,9 @@
                                 <input type="password" name="PMpass" class="form-control" id="inputPassword" placeholder="Password">
                             </div>
                         </div>
-                        <a href="#myModal" class="trigger-btn" data-toggle="modal"><button type="submit" class="btn btn-primary btn-block btn-lg" action="pm_signUpQuery.php">Sign Up</button></a>
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up">
                     </form>
 
-                </div>
-
-                <!-- Modal HTML -->
-                <div id="myModal" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                        <div class="modal-content">
-                            <div class="modal-header">				
-                                <h4 class="modal-title w-100">Awesome!</h4>	
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-center">Signup successful. You can now login. </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button onclick="location.href = './pm_loginPage.php';" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="col-3"></div>  
