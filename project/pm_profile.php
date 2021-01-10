@@ -1,28 +1,6 @@
 <?php
-
 	session_start();
 	include "pm_authCheck.php"
-
-	if(isset($_GET['pid']))
-	{
-		$sql_statement = "SELECT P.*, C.Name AS categoryName FROM product P, category C WHERE pid='" . $_GET['pid'] . "'";
-
-		$result = mysqli_query($db, $sql_statement);
-
-		if($row['isDeleted'] == 0)
-		{
-			$categoryName = $row['categoryName'];
-			$pid = $row['pid'];
-			$PMid = $row['PMid'];
-			$Name = $row['Name'];
-			$Price = $row['Price'];
-			$Quantity = $row['Quantity'];
-			$Size = $row['Size'];
-			$Picture = $row['Picture'];
-		}
-	}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -131,9 +109,9 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li ><a href="#">Home</a></li>
-						<li class="active"><a href="#">Add Product</a></li>
-						<li><a href="./displayProduct.php">Product</a></li>
+						<li class="active"><a href="#">Home</a></li>
+						<li ><a href="./addProduct.php">Add Product</a></li>
+						<li > <a href="./displayProduct.php">Product</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -143,71 +121,15 @@
 		</nav>
 		<!-- /NAVIGATION -->
 
-		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Products</a></li>
-							<li class="active">Add</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /BREADCRUMB -->
-
-		<!-- FORM-->
-		<div>
-			<div class="container">
-		<form action="pm_addProduct.php" method="POST" enctype="multipart/form-data">
-			<div class="form-group">
-			  <label for="exampleFormControlInput1">Name</label>
-			  <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" value="<?php echo $row['Name']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput2">Price</label>
-				<input type="text" class="form-control" id="exampleFormControlInput2" name="Price" value="<?php echo $row['Price']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Quantity</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" name="Quantity" value="<?php echo $row['Quantity']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Size</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" value="<?php echo $row['Size']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Category</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" value="<?php echo $row['categoryName']; ?>">
-			</div>
-			<div>
-				<p>Choose required category before submitting:</p>
-			</div>
-			<?php 
-			include "getCategory.php"; 
-			?>
-			
-			<div class="form-group">
-				<input type="file" id="Picture" name="Picture">
-			</div>
-			<div class="form-group">
-  				<input type="submit" name="upload" value="Submit" >
-			</div>
-		  </form>
-		</div>
+	
+    <!-- SECTION -->
+    <div class="section">
+			<?php include "pm_profileQuery.php";
 	</div>
+		<!-- /SECTION -->
 
-		<!-- FORM-->
-
-		<!-- FOOTER -->
-		<footer id="footer">
+<!-- FOOTER -->
+<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
@@ -217,6 +139,7 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
+								
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
@@ -257,8 +180,8 @@
 									<?php if($_SESSION['authorized'])
 									{
 										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
+										<li><a href="#">Log Out</a></li>
+								<?php	} ?>	
 								</ul>
 							</div>
 						</div>
@@ -289,6 +212,7 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
+
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

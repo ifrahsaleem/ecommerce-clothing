@@ -3,8 +3,6 @@
     <body>
     <form action="" method="POST" enctype="multipart/form-data">
 
-
-
 <?php
 
 include "config.php";
@@ -15,14 +13,16 @@ $result = mysqli_query($db, $sql_statement);
 
 while($row = mysqli_fetch_assoc($result))
 {
-    $categoryName = $row['categoryName'];
-    $pid = $row['pid'];
-    $PMid = $row['PMid'];
-    $Name = $row['Name'];
-    $Price = $row['Price'];
-    $Quantity = $row['Quantity'];
-    $Size = $row['Size'];
-    $Picture = $row['Picture'];
+    if($row['isDeleted'] == 0)
+    {
+        $categoryName = $row['categoryName'];
+        $pid = $row['pid'];
+        $PMid = $row['PMid'];
+        $Name = $row['Name'];
+        $Price = $row['Price'];
+        $Quantity = $row['Quantity'];
+        $Size = $row['Size'];
+        $Picture = $row['Picture'];
 ?>
         <div class="col-md-6 col-xs-6">
             <!-- <div class="col-md-4 col-xs-6"></div> -->
@@ -37,8 +37,8 @@ while($row = mysqli_fetch_assoc($result))
                     <div class="product-rating">
                     </div>
                     <div class="product-btns">
-                        <a href="pm_deleteProduct.php?pid=<?php echo $row['pid'];?>"><button class="add-to-wishlist"><i class="fa fa-trash"></i><span class="tooltipp">Delete</span></button></a>
-                        <button class="add-to-compare"><i class="fa fa-edit"></i><span class="tooltipp">Edit</span></button>
+                        <button class="add-to-wishlist"><a href="pm_deleteProduct.php?pid=<?php echo $row['pid'];?>"><i class="fa fa-trash"></i><span class="tooltipp">Delete</span></a></button>
+                        <button class="add-to-compare"><a href="pm_editProduct.php?pid=<?php echo $row['pid'];?>"><i class="fa fa-edit"></i><span class="tooltipp">Edit</span></a></button>
                     </div>
                 </div>
                 <div class="add-to-cart">
@@ -47,6 +47,9 @@ while($row = mysqli_fetch_assoc($result))
             </div>
         </div>
         </form>
-    <?php } ?>
+    <?php } 
+    }?>
 </body>
 </html>
+
+<!-- <a href="pm_deleteProduct.php?pid=<?php echo $row['pid'];?>"> -->

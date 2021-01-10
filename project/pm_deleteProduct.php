@@ -6,7 +6,7 @@ if(isset($_GET['pid']))
 {
     $pid = $_GET['pid'];
 
-    $sql_statement = "DELETE FROM product WHERE pid='" . $_GET['pid'] . "'";
+    $sql_statement = "UPDATE product SET isDeleted = '1' WHERE pid='" . $_GET['pid'] . "'";
     
     $result = mysqli_query($db, $sql_statement);
     echo $result;

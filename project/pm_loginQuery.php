@@ -20,7 +20,7 @@
 
         
         $row = mysqli_fetch_assoc($result);
-        echo $row;
+       
         if($row == 0)
         {
            
@@ -29,10 +29,10 @@
             echo '</script>';
             
         }
-
+        
         else 
         {
-            while($row = mysqli_fetch_assoc($result))
+            while($row)
             {
 
                 if($row['PMpass'] == $PMpass && $row['PMusername'] == $PMusername)
