@@ -1,3 +1,10 @@
+<?php
+
+	session_start();
+	include "pm_authCheck.php"
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -42,13 +49,15 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 						<li><a href="#"></i> Product Manager Dashboard</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="./pm_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
+						<?php if($_SESSION['authorized'])
+									{
+										?>
+										<li><a href="pm_logOut.php">Log Out</a></li>
+								<?php	} ?>
 					</ul>
 				</div>
 			</div>
@@ -102,9 +111,9 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Add Product</a></li>
-						<li><a href="#">Product</a></li>
+						<li ><a href="#">Home</a></li>
+						<li ><a href="./addProduct.php">Add Product</a></li>
+						<li class="active"> <a href="#">Product</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -123,8 +132,8 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">Products</a></li>
-							<li class="active">Results</li>
+							<li class="active"><a href="#">Products</a></li>
+							<li >Add</li>
 						</ul>
 					</div>
 				</div>
@@ -134,54 +143,30 @@
 		</div>
 		<!-- /BREADCRUMB -->
 
-		<!-- FORM-->
-		<div>
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
 			<div class="container">
-		<form>
-			<div class="form-group">
-			  <label for="exampleFormControlInput1">Name</label>
-			  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Halter Top">
+				<!-- row -->
+				<div class="row">
+					<!-- STORE -->
+					<div id="store" class="col-md-9">
+						<!-- store products -->
+						<div class="row">
+							<!-- product -->
+							<?php include "pm_displayProduct.php" ?>
+							<!-- /product -->
+					</div>
+					<!-- /STORE -->
+				</div>
+				<!-- /row -->
 			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput2">Price</label>
-				<input type="email" class="form-control" id="exampleFormControlInput2" placeholder="199">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Quantity</label>
-				<input type="email" class="form-control" id="exampleFormControlInput3" placeholder="100">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Size</label>
-				<input type="email" class="form-control" id="exampleFormControlInput3" placeholder="L">
-			</div>
-			<div class="form-group">
-			  <label for="exampleFormControlSelect1">Example select</label>
-			  <select class="form-control" id="exampleFormControlSelect1">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			  </select>
-			</div>
-			<div class="form-group">
-			  <label for="exampleFormControlSelect2">Example multiple select</label>
-			  <select multiple class="form-control" id="exampleFormControlSelect2">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-			  </select>
-			</div>
+			<!-- /container -->
 		</div>
-		</div>
-		  </form>
+		<!-- /SECTION -->
 
-		<!-- FORM-->
-
-		<!-- FOOTER -->
-		<footer id="footer">
+<!-- FOOTER -->
+<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
@@ -228,6 +213,11 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
+									<?php if($_SESSION['authorized'])
+									{
+										?>
+										<li><a href="pm_logOut.php">Log Out</a></li>
+								<?php	} ?>
 								</ul>
 							</div>
 						</div>
@@ -258,6 +248,7 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
+
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

@@ -2,7 +2,7 @@
 session_start();
 include "config.php";
 
-if(isset($_POST['upload']))
+if(isset($_POST['pid']))
 {
 
     $Picture = addslashes(file_get_contents($_FILES["Picture"]["tmp_name"]));
@@ -13,18 +13,18 @@ if(isset($_POST['upload']))
     $cid = explode(' ', $_POST['cid'])[1];
     $PMid = $_SESSION['userId'];
 
-    $sql_statement = "INSERT INTO product(cid,  PMid, Name, Price, Quantity, Size, Picture) VALUES('$cid', '$PMid', '$Name', '$Price', '$Quantity', '$Size',  '$Picture')";
+    $sql_statement = "UPDATE product SET cid = '$cid', PMid = '$PMid', Name = '$Name', Price = '$Price', Quantity = '$Quantity', Size = '$Size', Picture = '$Picture' WHERE pid='" . $_POST['pid'] . "'";
     
     $result = mysqli_query($db, $sql_statement);
  
     if($result > 0)
     {
-        echo 'Product successfully added.';
+        echo 'Product successfully updated.';
         header("Location: displayProduct.php");
     }
 
     else
-    echo 'Product not added.' . $result;
+    echo 'Product not updated.' . $result;
 }
 
 else
