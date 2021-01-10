@@ -10,7 +10,7 @@
 		$catName = "Undefined";
 
 	// MySQL DB Connection
-	$conn = new mysqli('localhost', 'root', '', 'onlinesstores');
+	$conn = new mysqli('localhost', 'root', '', 'onlinesstore');
 
 	if ($conn->connect_error) {
 	  die("Connection failed: " . $conn->connect_error);
@@ -147,7 +147,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">Categories</a></li>
+							<li><a href="categories.php">Categories</a></li>
 							<li class="active"><?php echo $catName; ?></li>
 						</ul>
 					</div>
@@ -208,9 +208,6 @@
 														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 													</div>
-												</div>
-												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 												</div>
 											</div>
 										</div>
