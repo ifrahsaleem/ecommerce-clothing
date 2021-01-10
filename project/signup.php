@@ -1,9 +1,3 @@
-<?php
-
-	session_start();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Categories</title>
+		<title>Sign Up</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -39,81 +33,6 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-
-		<style>
-			.categories-row {
-				display: flex;
-				justify-content: space-around;
-			}
-
-			.cat-box {
-				padding: 0.5em;
-				background: #f7f7f7;
-				border-radius: 10px;
-				margin: 2em 0.5em;
-			}
-
-			.cat-box > .cat-bg {
-				height: 400px;
-			}
-
-			.cat-box > h3 {
-				text-align: center;
-				text-transform: uppercase;
-				margin: 1em auto;
-			}
-
-			#cat_coats {
-				background: url('img/categories/coats.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_dresses {
-				background: url('img/categories/dresses.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_trousers {
-				background: url('img/categories/trousers.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_bags {
-				background: url('img/categories/bags.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_shoes {
-				background: url('img/categories/shoes.png') center center;
-				background-size: cover;
-			}
-
-			#cat_accessories {
-				background: url('img/categories/accessories.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_shirts {
-				background: url('img/categories/shirts.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_sweatshirts {
-				background: url('img/categories/sweatshirts.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_suits {
-				background: url('img/categories/suits.jpg') center center;
-				background-size: cover;
-			}
-
-			#cat_skirts {
-				background: url('img/categories/skirts.jpg') center center;
-				background-size: cover;
-			}
-
-		</style>
 
     </head>
 	<body>
@@ -183,7 +102,7 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li><a href="index.php">Home</a></li>
-						<li class="active"><a href="categories.php">Categories</a></li>
+						<li><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -200,9 +119,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">Categories</h3>
+						<h3 class="breadcrumb-header">Sign Up</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="home.php">Home</a></li>
+							<li class="active">Sign Up</li>
 						</ul>
 					</div>
 				</div>
@@ -217,66 +137,38 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row categories-row">
-					<div class="col-md-4 cat-box">
-						<div id="cat_coats" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=1">Coats</a></h3>
-					</div>
-					<div class="col-md-4 cat-box">
-						<div id="cat_dresses" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=2">Dresses</a></h3>
-					</div>
-					<div class="col-md-4 cat-box">
-						<div id="cat_trousers" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=3">Trousers</a></h3>
-					</div>
-				</div>
-				<!-- /row -->
+				<div class="row">
+				<form action="user_signup.php" method="POST">
+					<div class="col-md-3"></div>
 
-				<!-- row -->
-				<div class="row categories-row">
-					<div class="col-md-4 cat-box">
-						<div id="cat_bags" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=4">Bags</a></h3>
+					<div class="col-md-6" style="background: #f7f7f7; padding: 2em; border-radius: 1em">
+						<div class="section-title">
+							<h4>Please fill out this form to create an account</h4>
+						</div>
+						<div class="form-group">
+							<input class="input" type="email" name="email_address" placeholder="Email Address">
+						</div>
+						<div class="form-group">
+							<input class="input" type="text" name="username" placeholder="Username">
+						</div>
+						<div class="form-group">
+							<input class="input" type="password" name="password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<input class="input" type="password" name="confirm_password" placeholder="Password (Again)">
+						</div>
+						<div class="form-group text-center">
+							<input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up"/>
+						</div>
 					</div>
-					<div class="col-md-4 cat-box">
-						<div id="cat_shoes" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=5">Shoes</a></h3>
-					</div>
-					<div class="col-md-4 cat-box">
-						<div id="cat_accessories" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=6">Accessories</a></h3>
-					</div>
-				</div>
-				<!-- /row -->
 
-				<!-- row -->
-				<div class="row categories-row">
-					<div class="col-md-4 cat-box">
-						<div id="cat_shirts" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=7">Shirts</a></h3>
-					</div>
-					<div class="col-md-4 cat-box">
-						<div id="cat_sweatshirts" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=8">Sweatshirts</a></h3>
-					</div>
-					<div class="col-md-4 cat-box">
-						<div id="cat_suits" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=9">Suits</a></h3>
-					</div>
 				</div>
+				</form>
+				
+				<div class="col-md-3"></div>
 				<!-- /row -->
-
-				<!-- row -->
-				<div class="row categories-row">
-					<div class="col-md-4 cat-box">
-						<div id="cat_skirts" class="cat-bg"></div>
-						<h3><a href="category.php?cat_id=10">Skirts/Shorts</a></h3>
-					</div>
-				</div>
-				<!-- /row -->
+			</div>
 			<!-- /container -->
-		</div>
 		</div>
 		<!-- /SECTION -->
 
