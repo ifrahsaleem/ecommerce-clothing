@@ -52,7 +52,7 @@
 						<li><a href="#"></i> Product Manager Dashboard</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="./pm_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
 						<?php if($_SESSION['authorized'])
 									{
 										?>
