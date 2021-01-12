@@ -141,12 +141,13 @@
                                 FROM product P, customers CU, cart C
                                 WHERE CU.userId=$uId AND CU.userId = C.userId AND C.pid = P.pid";
 
-            	$result = mysqli_query($db, $sql_statement);
+            	$resultt = mysqli_query($db, $sql_statement);
               $total = 0;
 							$counter = 0;
 							$_SESSION['button']="button";
-            	while($row = mysqli_fetch_assoc($result))
+            	while($row = mysqli_fetch_assoc($resultt))
             	{
+								$_SESSION['cart'] = true;
 								$pid = $row['pid'];
             		$productName = $row['Name'];
             		$productPrice = $row['Price'];

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include "userAutocheck.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,7 +151,14 @@
 				 <?php
 				 }
 				?>
-
+				<?php
+				include "config.php";
+				$uId = $_SESSION["customerId"];
+				$sql_statement = "DELETE
+											    FROM cart C
+													WHERE userId =$uId";
+				$result = mysqli_query($db, $sql_statement);
+				?>
 				<tr>
 				<td><strong>SHIPPING</strong></td>
 				<td><strong>FREE</strong></td>
