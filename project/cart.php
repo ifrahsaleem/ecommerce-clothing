@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -30,12 +33,6 @@
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 
     </head>
 	<body>
@@ -43,14 +40,13 @@
 		<header>
 			<!-- TOP HEADER -->
 			<div id="top-header">
-        <div class="header-logo col-md-9" align="center">
-          <a href="#" class="logo">
-            <img src="./img/hulu.png" width=200 alt="">
-          </a>
-        </div>
-
-      </div>
-      <!-- /TOP HEADER -->
+							<div class="header-logo" align="center">
+								<a href="#" class="logo">
+									<img src="./img/hulu.png" width=200 alt="">
+								</a>
+							</div>
+			</div>
+			<!-- /TOP HEADER -->
 
 			<!-- MAIN HEADER -->
 			<div id="top-header">
@@ -59,18 +55,35 @@
 					<!-- row -->
 					<div class="row">
 						<!-- ACCOUNT -->
-						<div class="col-md-2 clearfix">
-							<div class="header-ctn">
-                  <div class="dropdown pull-right accounts">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Account
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="signup.php">User</a><br>
-                          <a class="dropdown-item" href="pm_loginPage.php">Product Manager</a><br>
-                          <a class="dropdown-item" href="sm_loginPage.php">Sales Manager</a><br>
-                        </div>
-                  </div>
+           <div class="col-md-6"></div>
+						<div class="col-md-6 clearfix">
+							<div class="header-ctn pull-right">
+                <!-- Cart -->
+                <div class="yourcart pull-right">
+                  <a href="cart.php" class="btn" aria-expanded="true">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>My Cart</span>
+                  </a>
+                </div>
+                <!-- /Cart -->
+								<div class="acc">
+								<?php
+										echo '<div>
+													<a class="btn btn-secondary" href="homepage.php" type="button" aria-haspopup="true" aria-expanded="false">
+													Home Page
+													</a>
+										</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
+								?>
+								</div>
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
 							</div>
 						</div>
 						<!-- /ACCOUNT -->
@@ -113,55 +126,139 @@
     			<div class="container">
     				<!-- row -->
     				<div class="row">
+							<?php
 
+								?>
     				<table class="table table-success table-striped">
-    					<tr><th>Product </th><th> Unit Price</th> <th>Quantity</th>  <th>Sub Total</th></tr>
+    					<tr><th>ID</th><th>Product </th><th> Unit Price</th> <th>Quantity</th><th>Sub Total</th></tr>
     				<?php
 
     			   include "config.php";
-    			   session_start();
     			   error_reporting(0);
-    			   $getuser=$_SESSION['userId'];
-    			   if ($getuser== true)
-    			   {
 
-    			   }
-    			   else
-    			   {
-    				       header("Location: homepage.php");
-    			   }
-
-
-            	$sql_statement = "SELECT P.Name, P.Price, C.NumberOfProducts
+              $uId = $_SESSION['customerId'];
+            	$sql_statement = "SELECT P.pid, P.Name, P.Price, C.NumberOfProducts
                                 FROM product P, customers CU, cart C
-                                WHERE CU.userId=1006 AND CU.userId = C.userId AND C.pid = P.pid";
+                                WHERE CU.userId=$uId AND CU.userId = C.userId AND C.pid = P.pid";
 
             	$result = mysqli_query($db, $sql_statement);
               $total = 0;
+							$counter = 0;
+							$_SESSION['button']="button";
             	while($row = mysqli_fetch_assoc($result))
             	{
+								$pid = $row['pid'];
             		$productName = $row['Name'];
             		$productPrice = $row['Price'];
             		$numberOfProducts = $row['NumberOfProducts'];
             		$SubTotal = $productPrice * $numberOfProducts;
-                $total=   $total+  $SubTotal;
-                    echo "<tr>". "<th>". $productName . "</th>". "<th>". $productPrice . "</th>"."<th>".$numberOfProducts. "</th>"."<th>".$SubTotal. "</th>"."</tr>";
+                $total=  $total+ $SubTotal;
+								?>
+								<tr>
+									   <td><?php echo $pid; ?></td>
+										 <td><?php echo $productName; ?></td>
+										 <td><?php echo $productPrice; ?></td>
+										 <form method='post' action='inc_dec_cart.php'>
+										   <!--<input type='hidden' name='item'/> Why do you need this?-->
+										   <td>
+										       <button name='decqty'>-</button>
+										       <input type='text' size='1' maxlength="0" name='item' value='<?= $numberOfProducts; ?>'/>
+										       <button  name='incqty'>+</button>
+										   </td>
+										</form>
+										 <td><?php echo $SubTotal; ?></td>
 
+								 </tr> <?php
             	}
-              echo "<tr>". "<th>". "-" . "</th>". "<th>". "-" . "</th>"."<th>"."Total". "</th>"."<th>".$total. "</th>"."</tr>";
+							$_SESSION['total'] = $total;
+            ?>
 
-              ?>
+							<script>
+										$('button').each(function(key,value){
+								    $(this).attr("id",key)
+								});
+							</script>
+							<script>
+										$("button").click(function() {
 
-
+										var i = $(this).attr('id');
+										var i;
+										for (j = 0; j < 40; j++) {
+										  if(i <= 1){
+												document.cookie = "id = 1";
+											}else if (i <=3){
+												document.cookie = "id = 2";
+											}else if (i <=5){
+												document.cookie = "id = 3";
+											}else if (i <=7){
+												document.cookie = "id = 4";
+											}else if (i <=9){
+												document.cookie = "id = 5";
+											}else if (i <=11){
+												document.cookie = "id = 6";
+											}else if (i <=13){
+												document.cookie = "id = 7";
+											}else if (i <=15){
+												document.cookie = "id = 8";
+											}else if (i <=17){
+												document.cookie = "id = 9";
+											}else if (i <=19){
+												document.cookie = "id = 10";
+											}else if (i <=21){
+												document.cookie = "id = 11";
+											}else if (i <=23){
+												document.cookie = "id = 12";
+											}else if (i <=25){
+												document.cookie = "id = 13";
+											}else if (i <=27){
+												document.cookie = "id = 14";
+											}else if (i <=29){
+												document.cookie = "id = 15";
+											}else if (i <=31){
+												document.cookie = "id = 16";
+											}else if (i <=33){
+												document.cookie = "id = 17";
+											}else if (i <=35){
+												document.cookie = "id = 18";
+											}else if (i <=37){
+												document.cookie = "id = 19";
+											}else if (i <=39){
+												document.cookie = "id = 20";
+											}
+										}
+								});</script>
               </table>
+							<h3 class="col-md-6">Total: <?php echo $total; ?></h3>
+              <h4 style=padding-right:90px; align="right">IDs</h4>
+							<form action="deleteFromCart.php" method="POST" align="right">
+								<select name="ids">
+								<?php
+								$sql_statement = "SELECT pid FROM Cart WHERE userId=$uId";
+								$result = mysqli_query($db, $sql_statement);
 
+								while($id_rows = mysqli_fetch_assoc($result)){
+									$pid =  $id_rows['pid'];
+									echo "<option value=$pid>".$pid."</option>";
+
+								}
+								?>
+							</select>
+							<button class="btn btn-danger"> Remove </button>
+						</form>
             				</div>
             				<!-- /row -->
             			</div>
             			<!-- /container -->
+
+									<br><br>
+									<p class="col-md-3"></p>
+									<a href="categories.php" class="btn btn-primary col-md-6" style=margin:7px; > Continue Shpping </a>
+									<p class="col-md-3"></p>
+									<a href="checkout.php" class="btn btn-success col-md-6"style=margin:7px;> Checkout </a>
+									<div style=margin:30px;></div>
             		</div>
             		<!-- /SECTION -->
-
+							</div>
     </div>
 		<!-- FOOTER -->
 		<footer id="footer">

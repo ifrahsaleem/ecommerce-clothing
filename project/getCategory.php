@@ -3,7 +3,7 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">Category</label>
         <select  class="form-control" id="exampleFormControlSelect1" name= "cid">
- 
+
 
 
 <?php
@@ -18,8 +18,8 @@ while($row = mysqli_fetch_assoc($result))
 {
     $CName = $row['Name'];
     $cid = $row['cid'];
-    
-    echo "<option>" . $CName . " " . $cid . "</option>";
+
+    echo "<option selected>" . $CName . " " . $cid . "</option>";
 }
 ?>
 

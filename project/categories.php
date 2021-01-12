@@ -31,7 +31,7 @@
  		<link rel="stylesheet" href="css/font-awesome.min.css">
 
  		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,6 +113,7 @@
 				background-size: cover;
 			}
 
+
 		</style>
 
     </head>
@@ -121,40 +122,76 @@
 		<header>
 			<!-- TOP HEADER -->
 			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-right">
-						<?php
-							if (isset($_SESSION['username']))
-								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
-							else
-								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
-						?>
-					</ul>
-				</div>
+			        <div class="header-logo" align="center">
+			          <a href="#" class="logo">
+			            <img src="./img/hulu.png" width=200 alt="">
+			          </a>
+			        </div>
 			</div>
 			<!-- /TOP HEADER -->
 
 			<!-- MAIN HEADER -->
-			<div id="header">
+			<div id="top-header">
 				<!-- container -->
 				<div class="container">
 					<!-- row -->
 					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="./img/hulu.png" alt="" width="300px" height="100px">
-								</a>
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-8">
+							<div class="header-search" padding-left="10px">
+								<form action="search.php" method="POST">
+									<select name="opt" class="input-select">
+										<option value="0">All Categories</option>
+										<option value="1">Coats</option>
+										<option value="2">Dresses</option>
+                    <option value="3">Trousers</option>
+                    <option value="4">Bags</option>
+                    <option value="5">Shoes</option>
+                    <option value="6">Accessories</option>
+                    <option value="7">Shirts</option>
+                    <option value="8">Sweat-shirts</option>
+                    <option value="9">Suits</option>
+                    <option value="10">Skirts/Shorts</option>
+									</select>
+									<input class="input" name="search" placeholder="Search here">
+									<button class="search-btn">Search</button>
+								</form>
 							</div>
 						</div>
-						<!-- /LOGO -->
+						<!-- /SEARCH BAR -->
 
 						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
-								
-								<!-- Menu Toogle -->
+
+						<div class="col-md-4 clearfix">
+							<div class="header-ctn pull-right">
+								<div class="acc">
+								<?php
+									if (isset($_SESSION['username']))
+									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
+									<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
+									else
+										echo '<div class="dropdown pull-right accounts">
+	                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                          Login
+	                        </button>
+	                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	                          <a class="dropdown-item acc" href="login.php">User</a><br>
+	                          <a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
+	                          <a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
+	                        </div>
+	                  </div>';
+								?>
+								</div>
+								<!-- Cart -->
+								<div class="yourcart pull-right">
+									<a href="cart.php" class="btn" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>My Cart</span>
+									</a>
+								</div>
+								<!-- /Cart -->
+                <!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
 										<i class="fa fa-bars"></i>
@@ -182,7 +219,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li><a href="index.php">Home</a></li>
+						<li><a href="homepage.php">Home</a></li>
 						<li class="active"><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
@@ -202,7 +239,7 @@
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">Categories</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="home.php">Home</a></li>
+							<li><a href="homepage.php">Home</a></li>
 						</ul>
 					</div>
 				</div>
@@ -280,86 +317,40 @@
 		</div>
 		<!-- /SECTION -->
 
-	
+				<!-- FOOTER -->
+				<footer id="footer">
+					<!-- top footer -->
+					<div class="section">
+						<!-- container -->
+						<div class="container">
+							<!-- row -->
+							<div class="row">
+								<div>
+									<div class="footer col-md-6" align="center">
+										<h3 class="footer-title">About Us</h3>
+										<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+		              </div>
+		              <div class="footer col-md-6" align="center">
+		              <h3 class="footer-title">Contact Us</h3>
+		              <ul class="footer-links">
+		                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+		                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+		                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+		              </ul>
+		             </div>
+								</div>
 
-		<!-- FOOTER -->
-		<footer id="footer">
-			<!-- top footer -->
-			<div class="section">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-								</ul>
+								<div class="clearfix visible-xs"></div>
 							</div>
+							<!-- /row -->
 						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
-								<ul class="footer-links">
-								</ul>
-							</div>
-						</div>
-
-						<div class="clearfix visible-xs"></div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Information</h3>
-								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Service</h3>
-								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-								</ul>
-							</div>
-						</div>
+						<!-- /container -->
 					</div>
-					<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /top footer -->
+					<!-- /top footer -->
 
-			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</span>
-						</div>
-					</div>
-						<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /bottom footer -->
-		</footer>
-		<!-- /FOOTER -->
+				</footer>
+				<!-- /FOOTER -->
+
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

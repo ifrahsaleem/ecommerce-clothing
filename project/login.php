@@ -13,8 +13,11 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$query = "SELECT * FROM customers WHERE Username='$username' AND Password='$password';";
+
+		$query = "SELECT * FROM customers C WHERE C.Username='$username' AND C.Password='$password';";
 		$result = $conn->query($query);
+
+
 		if ($result->num_rows > 0) {
 			$loggedIn = true;
 			$_SESSION["username"] = $username;
@@ -22,6 +25,8 @@
 		else {
 			$invalid = true;
 		}
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['customerId']=$row['userId'];
 	}
 
 ?>
@@ -29,6 +34,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,7 +106,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -129,7 +135,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="index.php">Home</a></li>
+						<li class="active"><a href="homepage.php">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
@@ -149,7 +155,7 @@
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">Login</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
+							<li><a href="homepage.php">Home</a></li>
 							<li class="active">Login</li>
 						</ul>
 					</div>
@@ -169,11 +175,13 @@
 
 					<div class="col-md-3"></div>
 
-					
 
-					
+
+
 					<div class="col-md-6" style="background: #f7f7f7; padding: 2em; border-radius: 1em">
-						<?php if (isset($_SESSION['username'])) { ?>
+						<?php if (isset($_SESSION['username'])) {
+
+							?>
 
 							<h2 class="text-center">You are logged in!</h2>
 
@@ -201,7 +209,7 @@
 
 						<?php } ?>
 					</div>
-					
+
 
 				</div>
 
@@ -212,7 +220,7 @@
 		</div>
 		<!-- /SECTION -->
 
-	
+
 
 		<!-- FOOTER -->
 		<footer id="footer">
@@ -280,7 +288,7 @@
 						<div class="col-md-12 text-center">
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
