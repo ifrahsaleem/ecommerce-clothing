@@ -211,10 +211,8 @@
                                                     
                                                     
                                                    
-                                                    <div class="product-btns">
-                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                    </div>
+                                                    
+                                                    
                                                 </div>
                                                 
                                                     <div class="input-group plus-minus-input">
