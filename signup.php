@@ -1,31 +1,3 @@
-<?php
-
-	session_start();
-	include "pm_authCheck.php";
-	include "config.php";
-
-	if(isset($_GET['pid']))
-	{
-		$sql_statement = "SELECT P.*, C.Name AS categoryName, C.cid AS categoryId FROM product P, category C WHERE P.pid='" . $_GET['pid'] . "' AND P.cid = C.cid";
-	
-		$result = mysqli_query($db, $sql_statement);
-		$row = mysqli_fetch_assoc($result);
-		
-		if($row['isDeleted'] == 0)
-		{
-			$categoryName = $row['categoryName'];
-			$pid = $row['pid'];
-			$PMid = $row['PMid'];
-			$Name = $row['Name'];
-			$Price = $row['Price'];
-			$Quantity = $row['Quantity'];
-			$Size = $row['Size'];
-			$Picture = $row['Picture'];
-			$categoryId = $row['categoryId'];
-		}
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -34,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Hulu - Store for Women</title>
+		<title>Sign Up</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -69,16 +41,13 @@
 			<!-- TOP HEADER -->
 			<div id="top-header">
 				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"></i> Product Manager Dashboard</a></li>
-					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="./pm_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
-						<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
+						<?php
+							if (isset($_SESSION['username']))
+								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
+							else
+								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
+						?>
 					</ul>
 				</div>
 			</div>
@@ -132,9 +101,8 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li ><a href="#">Home</a></li>
-						<li><a href="./addProduct.php">Add Product</a></li>
-						<li><a href="./displayProduct.php">Product</a></li>
+						<li><a href="index.php">Home</a></li>
+						<li><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -151,10 +119,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Sign Up</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="./pm_homePage.php">Home</a></li>
-							<li><a href="./displayProduct.php">Products</a></li>
-							<li>Edit</li>
+							<li><a href="home.php">Home</a></li>
+							<li class="active">Sign Up</li>
 						</ul>
 					</div>
 				</div>
@@ -164,67 +132,47 @@
 		</div>
 		<!-- /BREADCRUMB -->
 
-		<!-- FORM-->
-		<div>
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
 			<div class="container">
-		<form action="pm_editProduct.php?pid=<?php echo $row['pid'];?>" method="POST" enctype="multipart/form-data">
-			<div class="form-group">
-			  <label for="exampleFormControlInput1">Name</label>
-			  <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" value="<?php echo $row['Name']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput2">Price</label>
-				<input type="text" class="form-control" id="exampleFormControlInput2" name="Price" value="<?php echo $row['Price']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Quantity</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" name="Quantity" value="<?php echo $row['Quantity']; ?>">
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Size</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" value="<?php echo $row['Size']; ?>">
-			</div>
-			
-		<div class="form-group">
-        <label for="exampleFormControlSelect1">Category</label>
-        <select  class="form-control" id="exampleFormControlSelect1" name= "cid">
-			<?php
+				<!-- row -->
+				<div class="row">
+				<form action="user_signup.php" method="POST">
+					<div class="col-md-3"></div>
 
-			include "config.php";
+					<div class="col-md-6" style="background: #f7f7f7; padding: 2em; border-radius: 1em">
+						<div class="section-title">
+							<h4>Please fill out this form to create an account</h4>
+						</div>
+						<div class="form-group">
+							<input class="input" type="email" name="email_address" placeholder="Email Address">
+						</div>
+						<div class="form-group">
+							<input class="input" type="text" name="username" placeholder="Username">
+						</div>
+						<div class="form-group">
+							<input class="input" type="password" name="password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<input class="input" type="password" name="confirm_password" placeholder="Password (Again)">
+						</div>
+						<div class="form-group text-center">
+							<input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up"/>
+						</div>
+					</div>
 
-			$sql_statement = "SELECT * FROM category";
-
-			$result = mysqli_query($db, $sql_statement);
-
-			while($row = mysqli_fetch_assoc($result))
-			{
-				$CName = $row['Name'];
-				$cid = $row['cid'];
+				</div>
+				</form>
 				
-				if($cid == $categoryId)
-					echo "<option selected>" . $CName . " " . $cid . "</option>";
-				else
-				echo "<option>" . $CName . " " . $cid . "</option>";
-			}
-			?>
-		</select>
-    	</div>
-
-
-			<div class="form-group">
-			<?php echo '<img src="data:image;base64,'.base64_encode($Picture).'" alt="Image">' ?>
+				<div class="col-md-3"></div>
+				<!-- /row -->
 			</div>
-			<div class="form-group">
-				<input type="file" id="Picture" name="Picture">
-			</div>
-			<div class="form-group">
-  				<input type="submit" name="upload" value="Submit" >
-			</div>
-		  </form>
+			<!-- /container -->
 		</div>
-	</div>
+		<!-- /SECTION -->
 
-		<!-- FORM-->
+	
 
 		<!-- FOOTER -->
 		<footer id="footer">
@@ -274,11 +222,6 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
-									<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
 								</ul>
 							</div>
 						</div>

@@ -35,10 +35,11 @@ while($row = mysqli_fetch_assoc($result))
                     <h3 class="product-name"><a href="#"><?php echo $Name?></a></h3>
                     <h4 class="product-price"><?php echo $Price?>TL</h4>
                     <div class="product-rating">
+                    <p>Quantity: <?php echo $Quantity?></p>
                     </div>
                     <div class="product-btns">
                         <button class="add-to-wishlist"><a href="pm_deleteProduct.php?pid=<?php echo $row['pid'];?>"><i class="fa fa-trash"></i><span class="tooltipp">Delete</span></a></button>
-                        <button class="add-to-compare"><a href="pm_editProduct.php?pid=<?php echo $row['pid'];?>"><i class="fa fa-edit"></i><span class="tooltipp">Edit</span></a></button>
+                        <button class="add-to-compare"><a href="getProduct.php?pid=<?php echo $row['pid'];?>"><i class="fa fa-edit"></i><span class="tooltipp">Edit</span></a></button>
                     </div>
                 </div>
                 <div class="add-to-cart">

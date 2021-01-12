@@ -181,7 +181,7 @@
                                     while ($product = $result->fetch_assoc()) {
 
                                         ?>
-
+                                        
                                         <!-- product -->
 
                                         <div class="col-md-6 col-xs-6">
@@ -208,30 +208,34 @@
                                                     <h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a> </h3>
                                                     <h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
                                                     <h5>Size: <?php echo $product['Size']; ?></h5>
-
-
-
-                                                    <div class="product-btns">
-                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                    </div>
+                                                    
+                                                    
+                                                   
+                                                    
+                                                    
                                                 </div>
-
+                                                <form action="sendproduct.php" method = "POST">
+                                                
+                                                
                                                     <div class="input-group plus-minus-input">
 
                                                     <input class="input-group-field" type="number" name="quantity" value="0">
 
                                                 </div>
+                                               
 
 
                                                 <div class="add-to-cart">
                                                     <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
+                                        
                                         <!-- /product -->
-
+                                        
                                         <?php
+                                        
                                     }
                                 }
 
