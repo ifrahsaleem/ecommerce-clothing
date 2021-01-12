@@ -4,13 +4,11 @@
 
 	$categories = array(' ', 'Coats', 'Dresses', 'Trousers', 'Bags', 'Shoes', 'Accessories', 'Shirts', 'Sweatshirts', 'Suits', 'Skirts/Shorts');
 
-	if (isset($_GET['cat_id']))
-		$catName = $categories[$_GET['cat_id']];
-	else
-		$catName = "Undefined";
-
 	// MySQL DB Connection
 	$conn = new mysqli('localhost', 'root', '', 'onlinesstore');
+
+	$searchQuery = $_POST['search'];
+	$searchCat = $_POST['opt'];
 
 	if ($conn->connect_error) {
 	  die("Connection failed: " . $conn->connect_error);
@@ -25,7 +23,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title><?php echo $catName; ?></title>
+		<title>Search Results</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -120,7 +118,7 @@
 														Login
 													</button>
 													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
-														<a class="dropdown-item acc" href="login.php">User</a><br>
+														<a class="dropdown-item acc" href="signup.php">User</a><br>
 														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
 														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
 													</div>
@@ -184,8 +182,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="homepage.php">Home</a></li>
-							<li><a href="categories.php">Categories</a></li>
-							<li class="active"><?php echo $catName; ?></li>
+							<li class="active">Search</li>
 						</ul>
 					</div>
 				</div>
@@ -203,51 +200,17 @@
 				<div class="row">
 					<!-- STORE -->
 					<div id="store" class="col">
-						<h1 class="category-title text-center"><?php echo $catName; ?></h1>
-
-						<!-- price filter -->
-						<div class="row" style="margin-bottom: 5em;">
-							<div class="col-md-4"></div>
-							<div class="col-md-4">
-								<form method="POST">
-									<h5>Filter by Price</h5>
-									<div class="price-filter">
-										<div id="price-slider"></div>
-										<div class="input-number price-min">
-											<input id="price-min" name="price-min" type="number">
-											<span class="qty-up">+</span>
-											<span class="qty-down">-</span>
-										</div>
-										<span>-</span>
-										<div class="input-number price-max">
-											<input id="price-max" name="price-max" type="number">
-											<span class="qty-up">+</span>
-											<span class="qty-down">-</span>
-										</div>
-									</div>
-									<input type="radio" name="order" value="ASC" checked /> Ascending order<br />
-									<input type="radio" name="order" value="DESC" /> Descending order<br />
-									<input class="primary-btn" style="margin-top: 1em; float: right; background: #d10024" type="submit" value="Filter"/>
-								</form>
-							</div>
-							<div class="col-md-4"></div>
-						</div>
-						<!-- /price filter -->
+						<h1 class="category-title text-center">Search Results For: <?php echo $searchQuery; ?></h1>
 
 						<!-- store products -->
 						<div class="row">
 
 							<?php
 								// Fetch products from database
-								$catID = $_GET['cat_id'];
-								$sql = "SELECT * FROM product WHERE cid=$catID";
-								if (isset($_POST['price-min'])) {
-									$priceMin = $_POST['price-min'];
-									$priceMax = $_POST['price-max'];
-									$order = $_POST['order'];
-									$sql = $sql . " AND Price BETWEEN $priceMin AND $priceMax ORDER BY Price $order";
-								}
-								
+								if ($searchCat == 0)
+									$sql = "SELECT * FROM product WHERE Name LIKE '%$searchQuery%'";
+								else
+									$sql = "SELECT * FROM product WHERE Name LIKE '%$searchQuery%' AND cid='$searchCat'";
 								$result = $conn->query($sql);
 								if ($result->num_rows > 0) {
 									while ($product = $result->fetch_assoc()) {
@@ -265,7 +228,7 @@
 													</div>
 												</div>
 												<div class="product-body">
-													<p class="product-category"><?php echo $catName; ?></p>
+													<p class="product-category"><?php echo $categories[$product['cid']]; ?></p>
 													<h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a></h3>
 													<h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
 													<h5>Size: <?php echo $product['Size']; ?></h5>
@@ -288,6 +251,9 @@
 
 										<?php
 									}
+								}
+								else {
+									echo "<h4>No results found!</h4>";
 								}
 
 							?>

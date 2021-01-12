@@ -99,7 +99,7 @@
             }
 
             #pro_sweatshirt {
-                background: url('img/productss/sweatshirts.png') center center;
+                background: url('img/products/sweatshirt.png') center center;
                 background-size: cover;
             }
 

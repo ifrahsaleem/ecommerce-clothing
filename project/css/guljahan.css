@@ -52,6 +52,20 @@ Table OF Contents
 /*----------------------------*\
 	Typography
 \*----------------------------*/
+.acc{
+  padding-top:10px;
+}
+.acc a{
+   font-weight: bold;
+   color: White;
+}
+.acc a:hover{
+   color: Red;
+}
+.acc .dropdown-menu{
+   background-color: Grey;
+}
+
 
 body {
   font-family: "Montserrat", sans-serif;

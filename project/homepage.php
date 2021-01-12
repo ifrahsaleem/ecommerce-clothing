@@ -1,41 +1,28 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
 		<title>hulu</title>
 
- 		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
- 		<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
- 		<!-- Slick -->
  		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
  		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
 
- 		<!-- nouislider -->
  		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
 
- 		<!-- Font Awesome Icon -->
  		<link rel="stylesheet" href="css/font-awesome.min.css">
 
- 		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 
     </head>
 	<body>
@@ -43,14 +30,13 @@
 		<header>
 			<!-- TOP HEADER -->
 			<div id="top-header">
-        <div class="header-logo" align="center">
-          <a href="#" class="logo">
-            <img src="./img/hulu.png" width=200 alt="">
-          </a>
-        </div>
-
-      </div>
-      <!-- /TOP HEADER -->
+							<div class="header-logo" align="center">
+								<a href="#" class="logo">
+									<img src="./img/hulu.png" width=200 alt="">
+								</a>
+							</div>
+			</div>
+			<!-- /TOP HEADER -->
 
 			<!-- MAIN HEADER -->
 			<div id="top-header">
@@ -60,21 +46,21 @@
 					<div class="row">
 
 						<!-- SEARCH BAR -->
-						<div class="col-md-9">
+						<div class="col-md-8">
 							<div class="header-search" padding-left="10px">
 								<form action="search.php" method="POST">
 									<select name="opt" class="input-select">
-										<option value="0">Categories</option>
+										<option value="0">All Categories</option>
 										<option value="1">Coats</option>
 										<option value="2">Dresses</option>
-                    <option value="3">Trousers</option>
-                    <option value="4">Bags</option>
-                    <option value="5">Shoes</option>
-                    <option value="6">Accessories</option>
-                    <option value="7">Shirts</option>
-                    <option value="8">Sweat-shirts</option>
-                    <option value="9">Suits</option>
-                    <option value="10">Skirts/Shorts</option>
+										<option value="3">Trousers</option>
+										<option value="4">Bags</option>
+										<option value="5">Shoes</option>
+										<option value="6">Accessories</option>
+										<option value="7">Shirts</option>
+										<option value="8">Sweat-shirts</option>
+										<option value="9">Suits</option>
+										<option value="10">Skirts/Shorts</option>
 									</select>
 									<input class="input" name="search" placeholder="Search here">
 									<button class="search-btn">Search</button>
@@ -85,28 +71,35 @@
 
 						<!-- ACCOUNT -->
 
-						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
-                  <div class="dropdown pull-right accounts">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Account
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="signup.php">User</a><br>
-                          <a class="dropdown-item" href="pm_loginPage.php">Product Manager</a><br>
-                          <a class="dropdown-item" href="sm_loginPage.php">Sales Manager</a><br>
-                        </div>
-                  </div>
-
+						<div class="col-md-4 clearfix">
+							<div class="header-ctn pull-right">
+								<div class="acc">
+								<?php
+									if (isset($_SESSION['username']))
+										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
+										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
+									else
+										echo '<div class="dropdown pull-right accounts">
+													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														Login
+													</button>
+													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
+														<a class="dropdown-item acc" href="login.php">User</a><br>
+														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
+														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
+													</div>
+										</div>';
+								?>
+								</div>
 								<!-- Cart -->
-								<div class="yourcart pull-right">
+								<div class="pull-right">
 									<a href="cart.php" class="btn" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>My Cart</span>
 									</a>
 								</div>
 								<!-- /Cart -->
-                <!-- Menu Toogle -->
+								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
 										<i class="fa fa-bars"></i>
@@ -136,7 +129,6 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#top-header">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
-            <li><a href="orders.php">Orders</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>

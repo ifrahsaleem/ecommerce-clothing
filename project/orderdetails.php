@@ -166,77 +166,46 @@
 				<!-- row -->
 				<div class="row">
 
-					<div class="col-md-7">
-						<!-- shipping Details -->
-						<div class="shipping-details">
-							<div class="section-title">
-								<h3 class="title">Shipping Information</h3>
-							</div>
-              <form action="checkoutquery.php" method="POST">
-                  <div class="form-group row" >
-                      <label for="oname" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-10">
-                          <input type="text" name="name" class="form-control" id="oname" placeholder="Harry">
-                      </div>
-                  </div>
+          <!-- Order Details -->
+          <div class="col-md-7 order-details">
+            <div class="section-title text-center">
+              <h3 class="title">Order Details</h3>
+            </div>
+            <div class="order-summary">
+              <div class="order-col">
+                <div><strong>PRODUCTS</strong></div>
+                <div><strong>SUB TOTAL</strong></div>
+              </div>
+              <div class="order-products">
+                <?php
+                include "config.php";
+                $uId = $_SESSION["customerId"];
+                $sql_statement = "SELECT C.*, P.Name
+                                  FROM cart C, product P
+                                  WHERE userId =$uId AND C.pid = P.pid";
 
-                  <div class="form-group row">
-                      <label for="osurname" class="col-sm-2 col-form-label">Surname</label>
-                      <div class="col-sm-10">
-                          <input type="text" name="surname" class="form-control" id="osurname" placeholder="Styles">
-                      </div>
+                 $result = mysqli_query($db, $sql_statement);
+                 while($row = mysqli_fetch_assoc($result))
+                 {?>
+                   <div class="order-col">
+                    <div><?php echo $row['NumberOfProducts'];?>x <?php echo $row['Name'];?></div>
+                    <div><?php echo $row["totalPriceOfProduct"]?> TL</div>
                   </div>
-
-                  <div class="form-group row">
-                      <label for="oaddress" class="col-sm-2 col-form-label">Address</label>
-                      <div class="col-sm-10">
-                          <input type="text" name="address" class="form-control" id="oaddress" placeholder="R87 Street 12 Levis London UK">
-                      </div>
-                  </div>
-                  <h3> Payment </h3>
-                  <div class="form-group row">
-                      <label for="creditCardNo" class="col-sm-2 col-form-label">Credit Card Number</label>
-                      <div class="col-sm-10">
-                          <input type="number" name="creditCardNo" class="form-control" id="creditCardNo" placeholder="your credit card number">
-                      </div>
-                  </div>
-                  <div class="form-group row">
-                      <label for="creditCardName" class="col-sm-2 col-form-label">Credit Card Name</label>
-                      <div class="col-sm-10">
-                          <input type="text" name="creditCardName" class="form-control" id="creditCardName" placeholder="name on your credit card">
-                      </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="creditCardExpMonth" class="col-sm-2 col-form-label">Credit Card Expiry Month</label>
-                    <div class="col-sm-10">
-                      <select name="expiry_month">
-
-                        <?php
-                        for ($i = 1; $i <= 12; $i++) {
-                            echo '<option value="'.$i.'">'.$i.'</option>';
-                        } ?>
-                      </select>
-											</div>
-										</div>
-										<div class="form-group row">
-                      <label for="creditCardExpYear" class="col-sm-2 col-form-label">Credit Card Expiry Year</label>
-                      <div class="col-sm-10">
-                        <select name="expiry_year">
-                          <?php
-                          for ($i = 2020; $i <= 2040; $i++) {
-                              echo '<option value="'.$i.'">'.$i.'</option>';
-                          } ?>
-                        </select>
-                      </div>
-                  </div>
-                  <input type="submit" class="btn btn-primary btn-block btn-lg" value="Update Info">
-              </form>
-						</div>
-
-
-						<!-- /Shipping Details -->
-					</div>
-
+                 <?php }
+                ?>
+              </div>
+              <div class="order-col">
+                <div><strong>SHIPPING</strong></div>
+                <div><strong>FREE</strong></div>
+              </div>
+              <div class="order-col">
+                <div><strong>TOTAL</strong></div>
+                <div><strong class="order-total"><?php echo $_SESSION['total'];?> TL</strong></div>
+              </div>
+            </div>
+            <a href="orderdetailsquery.php" class="primary-btn order-submit">Place order</a>
+          </div>
+          <!-- /Order Details -->
 				</div>
 				<!-- /row -->
 			</div>
