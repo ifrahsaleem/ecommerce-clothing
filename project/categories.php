@@ -142,7 +142,7 @@
 							<div class="header-search" padding-left="10px">
 								<form action="search.php" method="POST">
 									<select name="opt" class="input-select">
-										<option value="0">All Categories</option>
+										<option value="0">Categories</option>
 										<option value="1">Coats</option>
 										<option value="2">Dresses</option>
                     <option value="3">Trousers</option>
@@ -248,7 +248,7 @@
 			<!-- /container -->
 		</div>
 		<!-- /BREADCRUMB -->
-
+		
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->

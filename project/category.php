@@ -86,7 +86,7 @@
 							<div class="header-search" padding-left="10px">
 								<form action="search.php" method="POST">
 									<select name="opt" class="input-select">
-										<option value="0">All Categories</option>
+										<option value="0">Categories</option>
 										<option value="1">Coats</option>
 										<option value="2">Dresses</option>
 										<option value="3">Trousers</option>
@@ -120,7 +120,7 @@
 														Login
 													</button>
 													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
-														<a class="dropdown-item acc" href="signup.php">User</a><br>
+														<a class="dropdown-item acc" href="login.php">User</a><br>
 														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
 														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
 													</div>
@@ -205,6 +205,35 @@
 					<div id="store" class="col">
 						<h1 class="category-title text-center"><?php echo $catName; ?></h1>
 
+						<!-- price filter -->
+						<div class="row" style="margin-bottom: 5em;">
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<form method="POST">
+									<h5>Filter by Price</h5>
+									<div class="price-filter">
+										<div id="price-slider"></div>
+										<div class="input-number price-min">
+											<input id="price-min" name="price-min" type="number">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+										<span>-</span>
+										<div class="input-number price-max">
+											<input id="price-max" name="price-max" type="number">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+									</div>
+									<input type="radio" name="order" value="ASC" checked /> Ascending order<br />
+									<input type="radio" name="order" value="DESC" /> Descending order<br />
+									<input class="primary-btn" style="margin-top: 1em; float: right; background: #d10024" type="submit" value="Filter"/>
+								</form>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+						<!-- /price filter -->
+
 						<!-- store products -->
 						<div class="row">
 
@@ -212,6 +241,13 @@
 								// Fetch products from database
 								$catID = $_GET['cat_id'];
 								$sql = "SELECT * FROM product WHERE cid=$catID";
+								if (isset($_POST['price-min'])) {
+									$priceMin = $_POST['price-min'];
+									$priceMax = $_POST['price-max'];
+									$order = $_POST['order'];
+									$sql = $sql . " AND Price BETWEEN $priceMin AND $priceMax ORDER BY Price $order";
+								}
+								
 								$result = $conn->query($sql);
 								if ($result->num_rows > 0) {
 									while ($product = $result->fetch_assoc()) {

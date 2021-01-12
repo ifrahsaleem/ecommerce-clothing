@@ -81,7 +81,13 @@
 								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
 							else
 								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
+								
 						?>
+					
+                    <br>
+                    <button onclick="location.href = './signup.php';" class="btn btn-primary btn-block btn-xs">Sign Up</button>
+                    
+                </div>
 					</ul>
 				</div>
 			</div>
