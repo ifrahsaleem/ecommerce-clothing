@@ -208,13 +208,11 @@
                                                     <h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a> </h3>
                                                     <h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
                                                     <h5>Size: <?php echo $product['Size']; ?></h5>
-
-
-
-                                                    <div class="product-btns">
-                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                    </div>
+                                                    
+                                                    
+                                                   
+                                                    
+                                                    
                                                 </div>
 
                                                     <div class="input-group plus-minus-input">
