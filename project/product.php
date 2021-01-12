@@ -181,7 +181,7 @@
                                     while ($product = $result->fetch_assoc()) {
 
                                         ?>
-                                        
+
                                         <!-- product -->
                                         
                                         <div class="col-md-6 col-xs-6">
@@ -214,12 +214,12 @@
                                                     
                                                     
                                                 </div>
-                                                <form action="sendproduct.php" method = "POST">
+                                                
                                                 
                                                 
                                                     <div class="input-group plus-minus-input">
                                                     
-                                                    <input class="input-group-field" type="number" name="quantity" value="0">
+                                                    <input class="input-group-field" type="number" name="quantity" value="0" >
                                                     
                                                 </div>
                                                
@@ -228,12 +228,12 @@
                                                 <div class="add-to-cart">
                                                     <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                                                 </div>
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                         
                                         <!-- /product -->
-                                        
+                                       
                                         <?php
                                         
                                     }

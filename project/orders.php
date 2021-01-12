@@ -224,7 +224,10 @@
                                                             
                                                             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['Picture'] ).'">'. "<br>". "<br>"."<br>" . "<br>". "<br>"; ?>
                                                             <div align= "center">
-                                                            <form action = "comments.php" method = "POST">
+                                                            <form action = "orders.php" method = "POST">
+
+                                                                <input type ="number" name = "rating" placeholder = "Your Rating! 0-5"><br>
+                    
                                                                 <textarea name ="Comment" placeholder = "Write Your Comments Here"></textarea><br>
                                                                 <button> ADD YOUR COMMENT!</button>
                                                             </form>
