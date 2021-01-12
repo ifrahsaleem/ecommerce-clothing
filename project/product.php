@@ -4,7 +4,7 @@
 
     $products = array(' ', 'WOOL BLEND COAT WITH BELT', 'Velvet Dress', 'Flowy palazzo trousers', 'Leather Bag', 'Lace up track sole boots', 'RhineStone Hoop Earings', 'Lyocell cotton shirt', 'Sweatshirt', 'Denim shorts', 'Mom-fit jeans', 'grey Jan jeans');
 
-    if (isset($_GET['pro_id'])) 
+    if (isset($_GET['pro_id']))
         $proName = $products[$_GET['pro_id']];
     else
         $proName = "Undefined";
@@ -16,7 +16,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
     include "config.php";
-?> 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +99,7 @@
                         <!-- ACCOUNT -->
                         <div class="col-md-3 clearfix">
                             <div class="header-ctn">
-                                
+
                                 <!-- Menu Toogle -->
                                 <div class="menu-toggle">
                                     <a href="#">
@@ -183,9 +183,9 @@
                                         ?>
 
                                         <!-- product -->
-                                        
+
                                         <div class="col-md-6 col-xs-6">
-                                        
+
                                             <div class="product">
                                                 <div class="product-img">
                                                     <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $product['Picture'] ).'">'; ?>
@@ -195,7 +195,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+
                                         </div>
                         </div>
                     </div>
@@ -204,23 +204,23 @@
         </div>
                                         <div align= "right">
                                                 <div class="product-body">
-                                                     
+
                                                     <h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a> </h3>
                                                     <h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
                                                     <h5>Size: <?php echo $product['Size']; ?></h5>
-                                                    
-                                                    
-                                                   
+
+
+
                                                     <div class="product-btns">
                                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
                                                         <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
                                                     </div>
                                                 </div>
-                                                
+
                                                     <div class="input-group plus-minus-input">
-                                                    
+
                                                     <input class="input-group-field" type="number" name="quantity" value="0">
-                                                    
+
                                                 </div>
 
 
@@ -236,16 +236,16 @@
                                 }
 
                             ?>
-                        
+
                         <!-- /store products -->
 
-                    
+
                     <!-- /STORE -->
-                
+
                 <!-- /row -->
-            
+
             <!-- /container -->
-        
+
         <!-- /SECTION -->
 
         <!-- FOOTER -->
@@ -314,7 +314,7 @@
                         <div class="col-md-12 text-center">
                             <span class="copyright">
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </span>
                         </div>
@@ -335,8 +335,8 @@
         <script src="js/jquery.zoom.min.js"></script>
         <script src="js/main.js"></script>
 
-        
-                
-        
+
+
+
     </body>
 </html>

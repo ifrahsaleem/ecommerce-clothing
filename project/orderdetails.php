@@ -119,7 +119,7 @@
 		</header>
 		<!-- /HEADER -->
 
-		<!-- NAVIGATION -->
+    <!-- NAVIGATION -->
 		<nav id="navigation">
 			<!-- container -->
 			<div class="container">
@@ -127,7 +127,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#top-header">Home</a></li>
+						<li class="active"><a href="homepage.php">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
@@ -137,110 +137,115 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-    <!-- /Carousel -->
-    <div class="container-fluid">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="./img/dress.jpg" alt="DRESS" style="width:100%;">
-            <div class="carousel-caption">
-                <h1 style=font-size:150px; style=color:black>INDIRIM</h1>
-              <h2>15 - 25 January</h2>
-            </div>
-          </div>
-
-          <div class="item">
-            <img src="./img/bag.jpg" alt="BAG" style="width:100%;">
-            <div class="carousel-caption">
-                <h3 style=font-size:100px>NEW COLLECTION</h3>
-            </div>
-          </div>
-
-          <div class="item">
-            <img src="./img/sweater.jpg" alt="sweater" style="width:100%;">
-            <div class="carousel-caption">
-                <h1 style=font-size:150px; style=color:black>INDIRIM 50%</h1>
-              <h2>15 - 25 January</h2>
-            </div>
-          </div>
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-    <!-- /Carousel -->
-
-		<!-- NEWSLETTER -->
-		<div id="newsletter" class="section">
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<div class="newsletter">
-							<p>Sign Up for our <strong>NEWSLETTER</strong></p>
-							<form>
-								<input class="input" type="email" placeholder="Your Email">
-								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-							</form>
-						</div>
+						<h3 class="breadcrumb-header">Checkout</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="homepage.php">Home</a></li>
+							<li class="active">Checkout</li>
+						</ul>
 					</div>
 				</div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
 		</div>
-		<!-- /NEWSLETTER -->
+		<!-- /BREADCRUMB -->
 
-		<!-- FOOTER -->
-		<footer id="footer">
-			<!-- top footer -->
-			<div class="section">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div>
-							<div class="footer col-md-6" align="center">
-								<h3 class="footer-title">About Us</h3>
-								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+          <!-- Order Details -->
+          <div class="col-md-7 order-details">
+            <div class="section-title text-center">
+              <h3 class="title">Order Details</h3>
+            </div>
+            <div class="order-summary">
+              <div class="order-col">
+                <div><strong>PRODUCTS</strong></div>
+                <div><strong>SUB TOTAL</strong></div>
               </div>
-              <div class="footer col-md-6" align="center">
-              <h3 class="footer-title">Contact Us</h3>
-              <ul class="footer-links">
-                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
-                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
-              </ul>
-             </div>
-						</div>
+              <div class="order-products">
+                <?php
+                include "config.php";
+                $uId = $_SESSION["customerId"];
+                $sql_statement = "SELECT C.*, P.Name
+                                  FROM cart C, product P
+                                  WHERE userId =$uId AND C.pid = P.pid";
 
-						<div class="clearfix visible-xs"></div>
-					</div>
-					<!-- /row -->
+                 $result = mysqli_query($db, $sql_statement);
+                 while($row = mysqli_fetch_assoc($result))
+                 {?>
+                   <div class="order-col">
+                    <div><?php echo $row['NumberOfProducts'];?>x <?php echo $row['Name'];?></div>
+                    <div><?php echo $row["totalPriceOfProduct"]?> TL</div>
+                  </div>
+                 <?php }
+                ?>
+              </div>
+              <div class="order-col">
+                <div><strong>SHIPPING</strong></div>
+                <div><strong>FREE</strong></div>
+              </div>
+              <div class="order-col">
+                <div><strong>TOTAL</strong></div>
+                <div><strong class="order-total"><?php echo $_SESSION['total'];?> TL</strong></div>
+              </div>
+            </div>
+            <a href="orderdetailsquery.php" class="primary-btn order-submit">Place order</a>
+          </div>
+          <!-- /Order Details -->
 				</div>
-				<!-- /container -->
+				<!-- /row -->
 			</div>
-			<!-- /top footer -->
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
 
-		</footer>
-		<!-- /FOOTER -->
+
+    		<!-- FOOTER -->
+    		<footer id="footer">
+    			<!-- top footer -->
+    			<div class="section">
+    				<!-- container -->
+    				<div class="container">
+    					<!-- row -->
+    					<div class="row">
+    						<div>
+    							<div class="footer col-md-6" align="center">
+    								<h3 class="footer-title">About Us</h3>
+    								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+                  </div>
+                  <div class="footer col-md-6" align="center">
+                  <h3 class="footer-title">Contact Us</h3>
+                  <ul class="footer-links">
+                    <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+                  </ul>
+                 </div>
+    						</div>
+
+    						<div class="clearfix visible-xs"></div>
+    					</div>
+    					<!-- /row -->
+    				</div>
+    				<!-- /container -->
+    			</div>
+    			<!-- /top footer -->
+
+    		</footer>
+    		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>
@@ -249,8 +254,6 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
-    <script language="JavaScript" type="text/javascript" src="scripts/jquery.js"></script>
-
 
 	</body>
 </html>
