@@ -7,22 +7,38 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
 		<title>hulu</title>
 
+ 		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
+ 		<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
+ 		<!-- Slick -->
  		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
  		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
 
+ 		<!-- nouislider -->
  		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
 
+ 		<!-- Font Awesome Icon -->
  		<link rel="stylesheet" href="css/font-awesome.min.css">
 
+ 		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 
     </head>
 	<body>
@@ -50,7 +66,7 @@
 							<div class="header-search" padding-left="10px">
 								<form action="search.php" method="POST">
 									<select name="opt" class="input-select">
-										<option value="0">All Categories</option>
+										<option value="0">Categories</option>
 										<option value="1">Coats</option>
 										<option value="2">Dresses</option>
 										<option value="3">Trousers</option>
@@ -92,7 +108,7 @@
 								?>
 								</div>
 								<!-- Cart -->
-								<div class="pull-right">
+								<div class="yourcart pull-right">
 									<a href="cart.php" class="btn" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>My Cart</span>
