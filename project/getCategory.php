@@ -3,9 +3,6 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">Category</label>
         <select  class="form-control" id="exampleFormControlSelect1" name= "cid">
- 
-
-
 <?php
 
 include "config.php";

@@ -1,14 +1,16 @@
 <?php
 
 	session_start();
-	include "pm_authCheck.php"
+	include "pm_authCheck.php";
+	include "config.php";
 
 	if(isset($_GET['pid']))
 	{
-		$sql_statement = "SELECT P.*, C.Name AS categoryName FROM product P, category C WHERE pid='" . $_GET['pid'] . "'";
-
+		$sql_statement = "SELECT P.*, C.Name AS categoryName, C.cid AS categoryId FROM product P, category C WHERE P.pid='" . $_GET['pid'] . "' AND P.cid = C.cid";
+	
 		$result = mysqli_query($db, $sql_statement);
-
+		$row = mysqli_fetch_assoc($result);
+		
 		if($row['isDeleted'] == 0)
 		{
 			$categoryName = $row['categoryName'];
@@ -19,10 +21,9 @@
 			$Quantity = $row['Quantity'];
 			$Size = $row['Size'];
 			$Picture = $row['Picture'];
+			$categoryId = $row['categoryId'];
 		}
 	}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -132,7 +133,7 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li ><a href="#">Home</a></li>
-						<li class="active"><a href="#">Add Product</a></li>
+						<li><a href="./addProduct.php">Add Product</a></li>
 						<li><a href="./displayProduct.php">Product</a></li>
 					</ul>
 					<!-- /NAV -->
@@ -151,9 +152,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Products</a></li>
-							<li class="active">Add</li>
+							<li><a href="./pm_homePage.php">Home</a></li>
+							<li><a href="./displayProduct.php">Products</a></li>
+							<li>Edit</li>
 						</ul>
 					</div>
 				</div>
@@ -166,7 +167,7 @@
 		<!-- FORM-->
 		<div>
 			<div class="container">
-		<form action="pm_addProduct.php" method="POST" enctype="multipart/form-data">
+		<form action="pm_editProduct.php?pid=<?php echo $row['pid'];?>" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 			  <label for="exampleFormControlInput1">Name</label>
 			  <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" value="<?php echo $row['Name']; ?>">
@@ -183,17 +184,36 @@
 				<label for="exampleFormControlInput3">Size</label>
 				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" value="<?php echo $row['Size']; ?>">
 			</div>
-			<div class="form-group">
-				<label for="exampleFormControlInput3">Category</label>
-				<input type="text" class="form-control" id="exampleFormControlInput3" value="<?php echo $row['categoryName']; ?>">
-			</div>
-			<div>
-				<p>Choose required category before submitting:</p>
-			</div>
-			<?php 
-			include "getCategory.php"; 
-			?>
 			
+		<div class="form-group">
+        <label for="exampleFormControlSelect1">Category</label>
+        <select  class="form-control" id="exampleFormControlSelect1" name= "cid">
+			<?php
+
+			include "config.php";
+
+			$sql_statement = "SELECT * FROM category";
+
+			$result = mysqli_query($db, $sql_statement);
+
+			while($row = mysqli_fetch_assoc($result))
+			{
+				$CName = $row['Name'];
+				$cid = $row['cid'];
+				
+				if($cid == $categoryId)
+					echo "<option selected>" . $CName . " " . $cid . "</option>";
+				else
+				echo "<option>" . $CName . " " . $cid . "</option>";
+			}
+			?>
+		</select>
+    	</div>
+
+
+			<div class="form-group">
+			<?php echo '<img src="data:image;base64,'.base64_encode($Picture).'" alt="Image">' ?>
+			</div>
 			<div class="form-group">
 				<input type="file" id="Picture" name="Picture">
 			</div>
