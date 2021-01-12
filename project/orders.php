@@ -176,7 +176,7 @@
 
                             $sql = "SELECT O.userId,O.orderID, O.Orderdate, O.SMid, O.ShippedDate, O.TotalPrice, O.OrderStatus, O.billingDate,
                             D.pid, D.Price, D.Quantity, P.Name, P.Picture
-                            FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = '1010'";
+                            FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = '1001'";
                             $result = mysqli_query($db, $sql);
                             
                             while($row = mysqli_fetch_assoc($result)) {
@@ -223,7 +223,12 @@
                                                             </table>
                                                             
                                                             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['Picture'] ).'">'. "<br>". "<br>"."<br>" . "<br>". "<br>"; ?>
-
+                                                            <div align= "center">
+                                                            <form action = "comments.php" method = "POST">
+                                                                <textarea name ="Comment" placeholder = "Write Your Comments Here"></textarea><br>
+                                                                <button> ADD YOUR COMMENT!</button>
+                                                            </form>
+                                                            </div>
                                                    
                                                     
                                                 </div>
