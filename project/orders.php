@@ -126,7 +126,7 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li><a href="index.php">Home</a></li>
+                        <li><a href="homepage.php">Home</a></li>
                         <li><a href="orders.php">Orders</a></li>
                     </ul>
                     <!-- /NAV -->
@@ -181,6 +181,8 @@
                             
                             while($row = mysqli_fetch_assoc($result)) {
 
+                               $pid =  $row["pid"];
+                               $userid= $row["userId"];
                                         ?>
 
                                         <!-- product -->
@@ -230,6 +232,15 @@
                     
                                                                 <textarea name ="Comment" placeholder = "Write Your Comments Here"></textarea><br>
                                                                 <button> ADD YOUR COMMENT!</button>
+
+                                                                <?php
+                                                                $rate = $_POST['rating'];
+                                                                $rev = $_POST['Comment'];
+                                                                $sql_statement = "INSERT INTO comments(Rating, pid, userId, Review)
+                                                                                VALUES ('$rate','$pid','$userid', '$rev')";
+                                                                $result2 = mysqli_query($db, $sql_statement)
+                                                                ?>
+                                                                                
                                                             </form>
                                                             </div>
                                                    

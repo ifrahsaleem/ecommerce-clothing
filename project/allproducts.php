@@ -1,37 +1,8 @@
+
 <?php
 
     session_start();
-
-    $products = array(' ', 'WOOL BLEND COAT WITH BELT', 'Velvet Dress', 'Flowy palazzo trousers', 'Leather Bag', 'Lace up track sole boots', 'RhineStone Hoop Earings', 'Lyocell cotton shirt', 'Sweatshirt', 'Denim shorts', 'Mom-fit jeans', 'grey Jan jeans');
-
-    if (isset($_GET['pid']))
-    {
-        $getpid = $_GET['pid'];
-        $sql = "SELECT *
-                FROM product P 
-                WHERE  pid = $getpid";
-                $result = mysqli_query($db, $sql);
-                            
-                while($row = mysqli_fetch_assoc($result)) {
-
-                    $proName =  $row["Name"];
-                   
-                                        
-
     
-
-    }
-
-
-
-    }
-    else 
-    {
-        echo "UNDEFINED";
-    }
-
-
-       
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
          <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title><?php echo $proName; ?></title>
+        <title>Hulu - Store for Women</title>
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -70,13 +41,6 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <style>
-            .product-title {
-                text-transform: uppercase;
-                margin-bottom: 2em;
-            }
-        </style>
-
     </head>
     <body>
         <!-- HEADER -->
@@ -84,13 +48,16 @@
             <!-- TOP HEADER -->
             <div id="top-header">
                 <div class="container">
+                    <ul class="header-links pull-left">
+                        <li><a href="#"></i> Products</a></li>
+                    </ul>
                     <ul class="header-links pull-right">
-                        <?php
-                            if (isset($_SESSION['username']))
-                                echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
-                            else
-                                echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
-                        ?>
+                        <li><a href="./user_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
+                        <?php if($_SESSION['authorized'])
+                                    {
+                                        ?>
+                                        <li><a href="userlogout.php">Log Out</a></li>
+                                <?php   } ?>
                     </ul>
                 </div>
             </div>
@@ -115,7 +82,7 @@
                         <!-- ACCOUNT -->
                         <div class="col-md-3 clearfix">
                             <div class="header-ctn">
-
+                                
                                 <!-- Menu Toogle -->
                                 <div class="menu-toggle">
                                     <a href="#">
@@ -144,8 +111,8 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="allproducts.php">Products</a></li>
+                        <li ><a href="#">Home</a></li>
+                        <li class="active"> <a href="#">Product</a></li>
                     </ul>
                     <!-- /NAV -->
                 </div>
@@ -164,8 +131,7 @@
                     <div class="col-md-12">
                         <ul class="breadcrumb-tree">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Products</a></li>
-                            <li class="active"><?php echo $proName; ?></li>
+                            <li class="active"><a href="#">Products</a></li>
                         </ul>
                     </div>
                 </div>
@@ -182,110 +148,23 @@
                 <!-- row -->
                 <div class="row">
                     <!-- STORE -->
-                    <div id="store" class="col">
-                        <h1 class="product-title text-center"><?php echo $proName; ?></h1>
-
+                    <div id="store" class="col-md-9">
                         <!-- store products -->
                         <div class="row">
-
-                            <?php
-                                // Fetch products from database
-                                $proID = $_GET['pid'];
-                                $sql = "SELECT * FROM product WHERE pid=$proID";
-                                $result = $conn->query($sql);
-                                if ($result->num_rows > 0) {
-                                    while ($product = $result->fetch_assoc()) {
-                                        $prod_id = $product["pid"]
-                                        ?>
-                                        
-                                        <!-- product -->
-
-                                        <div class="col-md-6 col-xs-6">
-
-                                            <div class="product">
-                                                <div class="product-img">
-                                                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $product['Picture'] ).'">'; ?>
-                                                    <div class="product-label">
-                                                        <!--<span class="sale">-30%</span>
-                                                        <span class="new">NEW</span>-->
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                        </div>
+                            <!-- product -->
+                            <?php include "user_allproducts.php" ?>
+                            <!-- /product -->
                     </div>
-                </div>
-            </div>
-        </div>
-                                        <div align= "right">
-                                                <div class="product-body">
-
-                                                    <h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a> </h3>
-                                                    <h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
-                                                    <h5>Size: <?php echo $product['Size']; ?></h5>
-                                                    
-                                                    
-                                                   
-                                                    
-                                                    
-                                                </div>
-                                                <form action="product.php?pro_id= $prod_id" method = "POST">
-                                                
-                                                
-                                                    <div class="input-group plus-minus-input">
-
-                                                    <input class="input-group-field" type="number" name="quantity" value="0">
-
-                                                </div>
-                                               
-
-
-                                                <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                                </div>
-                                                
-
-                                                <?php
-                                                $quan = $_POST['quantity'];
-                                                
-                                                $sql_statement = "UPDATE product SET Quantity = Quantity - $quan
-                                                                   WHERE pid = $prod_id";
-                                                $result2 = mysqli_query($db, $sql_statement)
-                                                ?>
-
-
-                                                </form>
-                                            
-                                            <?php
-                                            include "showingcomments.php";
-                                            ?>
-                                             
-                                        </div>
-                                        </div>
-                                        
-                                        <!-- /product -->
-                                        
-                                        <?php
-                                        
-                                    }
-                                }
-
-                            ?>
-
-                        <!-- /store products -->
-
-
                     <!-- /STORE -->
-
+                </div>
                 <!-- /row -->
-
+            </div>
             <!-- /container -->
-
+        </div>
         <!-- /SECTION -->
 
-        <!-- FOOTER -->
-        <footer id="footer">
+<!-- FOOTER -->
+<footer id="footer">
             <!-- top footer -->
             <div class="section">
                 <!-- container -->
@@ -306,7 +185,7 @@
 
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
-                                <h3 class="footer-title">Product</h3>
+                                <h3 class="footer-title">Categories</h3>
                                 <ul class="footer-links">
                                 </ul>
                             </div>
@@ -332,6 +211,11 @@
                                 <h3 class="footer-title">Service</h3>
                                 <ul class="footer-links">
                                     <li><a href="#">My Account</a></li>
+                                    <?php if($_SESSION['authorized'])
+                                    {
+                                        ?>
+                                        <li><a href="userlogout.php">Log Out</a></li>
+                                <?php   } ?>
                                 </ul>
                             </div>
                         </div>
@@ -350,7 +234,7 @@
                         <div class="col-md-12 text-center">
                             <span class="copyright">
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </span>
                         </div>
@@ -370,9 +254,6 @@
         <script src="js/nouislider.min.js"></script>
         <script src="js/jquery.zoom.min.js"></script>
         <script src="js/main.js"></script>
-
-
-
 
     </body>
 </html>
