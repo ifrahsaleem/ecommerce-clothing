@@ -11,8 +11,17 @@ session_start();
         $sql_statement = "SELECT * FROM salesmanager S WHERE S.SMpass = '$SMpass' AND S.SMusername = '$SMusername'";
 
         $result = mysqli_query($db, $sql_statement);
+        $row = mysqli_fetch_assoc($result);
+        if($row == 0)
+        {
+           
+            echo '<script type="text/javascript">alert("Incorrect login details!");';
+            echo 'window.location.href = "sm_loginPage.php";';
+            echo '</script>';
+            
+        }
 
-        while($row = mysqli_fetch_assoc($result))
+        while($row)
         {
 
             if($row['SMpass'] == $SMpass && $row['SMusername'] == $SMusername)
@@ -20,7 +29,7 @@ session_start();
                 // set the session
                 $_SESSION['authorized'] = true;
                 //set User Id
-                $_SESSION['userId'] = $row['SMid']; 
+                $_SESSION['usersm'] = $row['SMid']; 
                 $SMname= $row['SMname'];
 
                 //echo $SMname . " logged in successfully.";
