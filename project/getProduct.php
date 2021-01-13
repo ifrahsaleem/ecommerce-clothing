@@ -7,10 +7,10 @@
 	if(isset($_GET['pid']))
 	{
 		$sql_statement = "SELECT P.*, C.Name AS categoryName, C.cid AS categoryId FROM product P, category C WHERE P.pid='" . $_GET['pid'] . "' AND P.cid = C.cid";
-	
+
 		$result = mysqli_query($db, $sql_statement);
 		$row = mysqli_fetch_assoc($result);
-		
+
 		if($row['isDeleted'] == 0)
 		{
 			$categoryName = $row['categoryName'];
@@ -104,7 +104,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -185,7 +185,7 @@
 				<label for="exampleFormControlInput3">Size</label>
 				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" value="<?php echo $row['Size']; ?>">
 			</div>
-			
+
 		<div class="form-group">
         <label for="exampleFormControlSelect1">Category</label>
         <select  class="form-control" id="exampleFormControlSelect1" name= "cid">
@@ -201,7 +201,7 @@
 			{
 				$CName = $row['Name'];
 				$cid = $row['cid'];
-				
+
 				if($cid == $categoryId)
 					echo "<option selected>" . $CName . " " . $cid . "</option>";
 				else

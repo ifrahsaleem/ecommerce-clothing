@@ -44,14 +44,8 @@
 		 <link type="text/css" rel="stylesheet" href="css/style.css"/>
          <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-		 
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+
 		<style>
 table {
   font-family: arial, sans-serif;
@@ -68,7 +62,7 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-form, input, select, textarea, p { 
+form, input, select, textarea, p {
       padding: 0;
       margin: 0;
       outline: none;
@@ -97,12 +91,12 @@ form, input, select, textarea, p {
       padding: 20px;
       border-radius: 6px;
       background: #fff;
-      box-shadow: 0 0 15px 0 #3263cd; 
+      box-shadow: 0 0 15px 0 #3263cd;
       }
       .banner {
       position: relative;
       height: 260px;
-     
+
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -111,7 +105,7 @@ form, input, select, textarea, p {
       }
       .banner::after {
       content: "";
-      background-color: rgba(0, 0, 0, 0.4); 
+      background-color: rgba(0, 0, 0, 0.4);
       position: absolute;
       width: 100%;
       height: 100%;
@@ -218,7 +212,7 @@ form, input, select, textarea, p {
       width: 150px;
       padding: 10px;
       border: none;
-      border-radius: 5px; 
+      border-radius: 5px;
       background: #3263cd;
       font-size: 16px;
       color: #fff;
@@ -256,7 +250,7 @@ form, input, select, textarea, p {
 				</div>
 			</div>
 			<!-- /TOP HEADER -->
-		
+
 
 			<!-- MAIN HEADER -->
 			<div id="header">
@@ -277,7 +271,7 @@ form, input, select, textarea, p {
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -308,7 +302,7 @@ form, input, select, textarea, p {
 					<ul class="main-nav nav navbar-nav">
                         <li > <a href="./smwelcome.php">My Account</a></li>
 						<li> <a href="./displayorders.php">View and Manage Orders</a></li>
-						
+
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -317,20 +311,20 @@ form, input, select, textarea, p {
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-       
-		
+
+
 
 		<!-- SECTION -->
         <div class="testbox">
         <?php
-             if (!($id = (isset($_GET['id']) ? (int) $_GET['id'] : 0))) 
+             if (!($id = (isset($_GET['id']) ? (int) $_GET['id'] : 0)))
              {
                echo 'Error: Company ID is required!';
              }
-             else 
+             else
              {
                  $id = $_GET['id'];
-                 
+
               $sql_statement = "SELECT O.* FROM orders O WHERE  O.orderID='" . $_GET['id'] . "'";
               $result = mysqli_query($db, $sql_statement);
 
@@ -339,19 +333,19 @@ form, input, select, textarea, p {
                   $ShipDate= $row['ShippedDate'];
                   $oID=$row['orderID'];
                   $currstat= $row['OrderStatus'];
-                  
+
               }
-               
+
              }
         ?>
 
-        
+
         <form action="editorderquery.php" method="POST">
-      
+
         <div class="banner">
           <h1>Manage Order Status</h1>
         </div>
-     
+
         <div class="item">
           <p><strong> Shipped Date: <strong></p>
           <input type="date" name="bdate" />
@@ -364,20 +358,20 @@ form, input, select, textarea, p {
             <input type="text" name="status"  value=" <?php echo $currstat; ?>" />
           </div>
 
-          <div class="item">
-          <p><strong>OrderID: </strong></p>
-          <div class="name-item">
-          <input type="text" name="orderID" value=" <?php echo $oID; ?>"/> 
-          </div>
-       
+
+
+
+          <input type="hidden" name="orderID" value=" <?php echo $oID; ?>"/>
+
+
           <input type="submit" value="Update">
-       
-        
+
+
       </form>
     </div>
           <!-- /SECTION -->
 
-        
+
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->

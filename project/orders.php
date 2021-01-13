@@ -32,6 +32,7 @@ $user = $_SESSION['customerId'];
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <!-- Custom stlylesheet -->
+
         <link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -216,7 +217,7 @@ $user = $_SESSION['customerId'];
 
                         <?php
 
-              
+
                         include "config.php";
 
 
@@ -275,7 +276,7 @@ $user = $_SESSION['customerId'];
                                                             <form action = "addcomment.php?pid=<?php echo $row['pid'];?> "method = "POST">
 
                                                                 <input type ="number" name = "rating" placeholder = "Your Rating! 0-5"><br>
-                    
+
                                                                 <input type ="text" name ="Comment" placeholder = "Write Your Comments Here"><br>
                                                                 <!-- <button> ADD YOUR COMMENT!</button> -->
 
@@ -285,7 +286,7 @@ $user = $_SESSION['customerId'];
   				                                                <input type="submit" name="submit" value="ADD YOUR COMMENT!" >
 			                                                    </div>
 
-                                                                                
+
                                                             </form>
                                                             </div>
 

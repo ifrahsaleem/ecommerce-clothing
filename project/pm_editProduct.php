@@ -14,23 +14,23 @@ if(isset($_GET['pid']))
         $PMid = $_SESSION['userId'];
 
         $sql_statement = "UPDATE product SET cid = '$cid', PMid = '$PMid', Name = '$Name', Price = '$Price', Quantity = '$Quantity', Size = '$Size' WHERE pid='" . $_GET['pid'] . "'";
-        
+
         $result = mysqli_query($db, $sql_statement);
-    
+
         if($result > 0)
         {
             echo 'Product successfully updated.';
             echo '<script type="text/javascript">alert("Product successfully updated!");';
             echo 'window.location.href = "displayProduct.php";';
             echo '</script>';
-            
+
         }
 
         else
         echo 'Product not updated.' . $result;
     }
 
-    else 
+    else
     {
         $Picture = addslashes(file_get_contents($_FILES["Picture"]["tmp_name"]));
         $Name = $_POST['Name'];
@@ -41,16 +41,16 @@ if(isset($_GET['pid']))
         $PMid = $_SESSION['userId'];
 
         $sql_statement = "UPDATE product SET cid = '$cid', PMid = '$PMid', Name = '$Name', Price = '$Price', Quantity = '$Quantity', Size = '$Size', Picture = '$Picture' WHERE pid='" . $_GET['pid'] . "'";
-        
+
         $result = mysqli_query($db, $sql_statement);
-    
+
         if($result > 0)
         {
             echo 'Product successfully updated.';
-            // echo '<script type="text/javascript">alert("Product successfully updated!");';
-            // echo 'window.location.href = "displayProduct.php";';
-            // echo '</script>';
-            
+            echo '<script type="text/javascript">alert("Product successfully updated!");';
+            echo 'window.location.href = "displayProduct.php";';
+            echo '</script>';
+
         }
 
         else

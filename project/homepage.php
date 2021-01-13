@@ -76,7 +76,7 @@
 							<div class="header-ctn pull-right">
 								<div class="acc">
 								<?php
-									if (isset($_SESSION['usernameCustomer']))
+									if (isset($_SESSION["usernameCustomer"]))
 										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
 										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
 									else
@@ -128,7 +128,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#top-header">Home</a></li>
+						<li class="active"><a href="#">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
 						<li><a href="products.php">Products</a></li>
 					</ul>

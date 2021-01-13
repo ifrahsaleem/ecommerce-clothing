@@ -72,7 +72,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -164,7 +164,7 @@
 
 				</div>
 				</form>
-				
+
 				<div class="col-md-3"></div>
 				<!-- /row -->
 			</div>
@@ -172,7 +172,7 @@
 		</div>
 		<!-- /SECTION -->
 
-	
+
 
 		<!-- FOOTER -->
 		<footer id="footer">
