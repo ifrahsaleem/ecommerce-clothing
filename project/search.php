@@ -118,7 +118,7 @@
 														Login
 													</button>
 													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
-														<a class="dropdown-item acc" href="signup.php">User</a><br>
+														<a class="dropdown-item acc" href="login.php">User</a><br>
 														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
 														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
 													</div>
