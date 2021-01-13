@@ -10,7 +10,7 @@ include "config.php";
 
 $sql_statement = "SELECT *
 FROM comments
-   WHERE pid = $prod_id";
+   WHERE pid = $proID";
 
 $result = mysqli_query($db, $sql_statement);
 

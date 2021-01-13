@@ -31,10 +31,10 @@ while($row = mysqli_fetch_assoc($result))
                 <div class="product-body">
                     <p class="product-category"><?php echo $categoryName?></p>
 
-                    <form action ="product.php" method= "POST">
-                    <h3 class="active"><a href="product.php?pid = $row['pid']"><?php echo $Name?></a></h3>
+                   <!--- <form action ="product.php" method= "POST">  --->
+                    <h3 class="active"><a href="product.php?pid=<?php echo $row['pid'];?>"><?php echo $Name?></a></h3>
 
-                    </form>
+                   <!-- </form> -->
                     <h4 class="product-price"><?php echo $Price?>TL</h4>
                     <h5 class="product-pid"><?php echo $pid?></h5>
                     <div class="product-rating">
@@ -43,23 +43,35 @@ while($row = mysqli_fetch_assoc($result))
                     <h6 class="product-size" ><a href="#"><?php echo $Size?></a></h6>
                     <div class="product-btns">
                     </div>
-                </div>
-                <div class="add-to-cart">
-                    
-                </div>
-                <form action ="allproducts.php" method= "POST">
-                <div class="add-to-cart">
-                 <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                </div>
 
-                <?php
-                  
-                  $sql_statement = "UPDATE product SET Quantity = Quantity - 1
-                                  WHERE pid = $pid";
-                                  $result2 = mysqli_query($db, $sql_statement)
-                            ?>
+                
+                </div>
+               <?php
+                
+                if ($Quantity != 0)
+                {
+
+                    ?>
+                  <div class="add-to-cart">
+                 <button class="add-to-cart-btn"><a href="cartquantity.php?pid=<?php echo $row['pid'];?>"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                 </div>
+
+                 <?php
+                }
+                else
+                {
+                    ?>
+                    <div class="add-to-cart">
+                    <button class="add-to-cart-btn">Out Of Stock!</button>
+                    </div>
+
+                    <?php
+                    }
+                ?>
+                
+                
                                                                                 
-                     </form>
+                   
             </div>
         </div>
         </form>

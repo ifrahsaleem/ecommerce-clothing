@@ -171,12 +171,13 @@
 
                         <?php
 
+              
                         include "config.php";
 
 
                             $sql = "SELECT O.userId,O.orderID, O.Orderdate, O.SMid, O.ShippedDate, O.TotalPrice, O.OrderStatus, O.billingDate,
                             D.pid, D.Price, D.Quantity, P.Name, P.Picture
-                            FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = '1001'";
+                            FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = '1010'";
                             $result = mysqli_query($db, $sql);
                             
                             while($row = mysqli_fetch_assoc($result)) {

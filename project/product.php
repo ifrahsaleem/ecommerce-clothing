@@ -2,36 +2,14 @@
 
     session_start();
 
-    $products = array(' ', 'WOOL BLEND COAT WITH BELT', 'Velvet Dress', 'Flowy palazzo trousers', 'Leather Bag', 'Lace up track sole boots', 'RhineStone Hoop Earings', 'Lyocell cotton shirt', 'Sweatshirt', 'Denim shorts', 'Mom-fit jeans', 'grey Jan jeans');
+   
+    // MySQL DB Connection
+    $conn = new mysqli('localhost', 'root', '', 'onlinesstore');
 
-    if (isset($_GET['pid']))
-    {
-        $getpid = $_GET['pid'];
-        $sql = "SELECT *
-                FROM product P 
-                WHERE  pid = $getpid";
-                $result = mysqli_query($db, $sql);
-                            
-                while($row = mysqli_fetch_assoc($result)) {
-
-                    $proName =  $row["Name"];
-                   
-                                        
-
-    
-
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
     }
-
-
-
-    }
-    else 
-    {
-        echo "UNDEFINED";
-    }
-
-
-       
+    include "config.php";
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
          <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title><?php echo $proName; ?></title>
+    
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -165,7 +143,7 @@
                         <ul class="breadcrumb-tree">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Products</a></li>
-                            <li class="active"><?php echo $proName; ?></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -183,7 +161,7 @@
                 <div class="row">
                     <!-- STORE -->
                     <div id="store" class="col">
-                        <h1 class="product-title text-center"><?php echo $proName; ?></h1>
+                        
 
                         <!-- store products -->
                         <div class="row">
@@ -195,7 +173,7 @@
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($product = $result->fetch_assoc()) {
-                                        $prod_id = $product["pid"]
+
                                         ?>
                                         
                                         <!-- product -->
@@ -230,38 +208,36 @@
                                                     
                                                     
                                                 </div>
-                                                <form action="product.php?pro_id= $prod_id" method = "POST">
                                                 
                                                 
-                                                    <div class="input-group plus-minus-input">
-
-                                                    <input class="input-group-field" type="number" name="quantity" value="0">
-
-                                                </div>
-                                               
-
-
-                                                <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                                </div>
                                                 
-
                                                 <?php
-                                                $quan = $_POST['quantity'];
+                
+                if ($Quantity != 0)
+                {
+
+                    ?>
+                  <div class="add-to-cart">
+                 <button class="add-to-cart-btn"><a href="cartquantity.php?pid=<?php echo $proID;?>"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                 </div>
+
+                 <?php
+                }
+                else
+                {
+                    ?>
+                    <div class="add-to-cart">
+                    <button class="add-to-cart-btn">Out Of Stock!</button>
+                    </div>
+
+                    <?php
+                    }
+                ?>
                                                 
-                                                $sql_statement = "UPDATE product SET Quantity = Quantity - $quan
-                                                                   WHERE pid = $prod_id";
-                                                $result2 = mysqli_query($db, $sql_statement)
-                                                ?>
-
-
-                                                </form>
                                             
-                                            <?php
-                                            include "showingcomments.php";
-                                            ?>
-                                             
-                                        </div>
+
+                                                
+                                            </div>
                                         </div>
                                         
                                         <!-- /product -->
@@ -270,7 +246,7 @@
                                         
                                     }
                                 }
-
+                                include "showingcomments.php";
                             ?>
 
                         <!-- /store products -->
