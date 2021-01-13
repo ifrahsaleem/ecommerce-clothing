@@ -23,18 +23,27 @@ while($row = mysqli_fetch_assoc($result))
     $i=$i+1;
 }
 
-$sql_statement = "SELECT Price FROM product WHERE pid = $pid";
+$sql_statement = "SELECT Price, Quantity FROM product WHERE pid = $pid";
 $result = mysqli_query($db, $sql_statement);
-$row = mysqli_fetch_assoc($result);
-$uPrice = $row['Price'];
+$rowq = mysqli_fetch_assoc($result);
+$uPrice = $rowq['Price'];
+$currentQ = $rowq['Quantity'];
 
+$sql_s = "SELECT NumberOfProducts AS num FROM cart WHERE pid=$pid AND userId=$uId";
+$reslt = mysqli_query($db, $sql_s);
+$rw = mysqli_fetch_assoc($reslt);
+$cartQQ = $rw['num'];
+
+echo $cartQQ." ".$currentQ;
 if(isset($_POST['incqty'])){
-  $sql_statement = "UPDATE cart
-                    SET totalPriceOfProduct = $uPrice * (NumberOfProducts+1),
-                         NumberOfProducts = NumberOfProducts+1
-                    WHERE userId =$uId AND pid = $pid";
+  if ($cartQQ < $currentQ){
+      $sql_statement = "UPDATE cart
+                        SET totalPriceOfProduct = $uPrice * (NumberOfProducts+1),
+                            NumberOfProducts = NumberOfProducts+1
+                        WHERE userId =$uId AND pid = $pid";
 
- $result = mysqli_query($db, $sql_statement);
+      $result = mysqli_query($db, $sql_statement);
+ }
  header("Location: cart.php");
 }
 
