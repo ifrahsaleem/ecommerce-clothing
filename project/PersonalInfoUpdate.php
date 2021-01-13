@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	include "userAutocheck.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,12 +77,8 @@
 										echo '<div>
 													<a class="btn btn-secondary" href="homepage.php" type="button" aria-haspopup="true" aria-expanded="false">
 													Home Page
-													</a>';
-													;
-										if (isset($_SESSION['usernameCustomer']))
-											echo '</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
-
-
+													</a>
+										</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
 								?>
 								</div>
 
@@ -115,6 +110,10 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
+            <li><a href="accountInfo.php">My Account</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li class="active"><a href="personalInfoUpdate.php">Account Update</a></li>
+
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -123,70 +122,21 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-    <div class="container">
-		<h1 style=padding:20px; align="center"> Your Order is Placed! </h1>
-		<h3 style=padding:20px; align="center"> Order Details </h3>
+		<div style=padding-left:100px;>
+		<?php
+		    include "config.php";
+		    $uId = $_SESSION['customerId'];
+		    $sql_statement = "SELECT * FROM customers  WHERE userId = $uId";
 
-		<table class="table table-striped table-hover" align="center">
-			<thead>
-	    <tr>
-	      <th scope="col">PRODUCTS</th>
-	      <th scope="col">SUB TOTAL</th>
-	    </tr>
-	  </thead>
+		    $res = mysqli_query($db, $sql_statement);
 
-				<tbody>
-				<?php
-				include "config.php";
-				$uId = $_SESSION["customerId"];
-				$sql_statement = "SELECT C.*, P.Name, P.pid
-													FROM cart C, product P
-													WHERE userId =$uId AND C.pid = P.pid";
-
-				 $result = mysqli_query($db, $sql_statement);
-				 while($row = mysqli_fetch_assoc($result))
-				 {?>
-					 <div class="order-col">
-						 <tr>
-						<td><?php echo $row['NumberOfProducts'];?>x <?php echo $row['Name'];?></td>
-						<?php
-						$qn = $row['NumberOfProducts'];
-						$prID = $row['pid'];
-						$sql_statement = "UPDATE product P
-					                    SET Quantity = (Quantity - $qn)
-					                    WHERE pid = $prID";
-
-						 $r = mysqli_query($db, $sql_statement);
-						 $uuu = 0;
-						?>
-						<td><?php echo $row["totalPriceOfProduct"]?> TL</td>
-					</tr>
-					</div>
-				 <?php
-				 }
-				?>
-				<?php //empty user's cart
-				include "config.php";
-				$uId = $_SESSION["customerId"];
-				$sql_statement = "DELETE
-											    FROM cart
-													WHERE userId =$uId";
-				$result = mysqli_query($db, $sql_statement);
-				?>
-				<tr>
-				<td><strong>SHIPPING</strong></td>
-				<td><strong>FREE</strong></td>
-			</tr>
-
-				<tr>
-				<td><strong>TOTAL</strong></td>
-				<td><strong class="order-total"><?php echo $_SESSION['total'];?> TL</strong></td>
-			</tr>
-
-			</tbody>
-		</table>
-
-		</div>
+		    while($row = mysqli_fetch_assoc($res))
+		    {
+                echo $row['Username'];
+                include "displayPersonalInfo.php";
+		    }
+		?>
+   </div>
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->
@@ -209,6 +159,7 @@
               </ul>
              </div>
 						</div>
+
 						<div class="clearfix visible-xs"></div>
 					</div>
 					<!-- /row -->

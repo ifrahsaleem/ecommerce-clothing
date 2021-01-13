@@ -31,6 +31,7 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		 <link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -146,6 +147,27 @@
 		</div>
 		<!-- /SECTION -->
 
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- STORE -->
+					
+                    <div class="col-md-auto">
+                    <h1>We hope you enjoy your day!</h1>
+                    </div>
+                 
+					</div>
+					<!-- /STORE -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
 <!-- FOOTER -->
 <footer id="footer">
 			<!-- top footer -->
@@ -154,55 +176,22 @@
 				<div class="container">
 					<!-- row -->
 					<div class="row">
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
+						<div>
+							<div class="footer col-md-6" align="center">
 								<h3 class="footer-title">About Us</h3>
-								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
-								<ul class="footer-links">
-								</ul>
-							</div>
+								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+              </div>
+              <div class="footer col-md-6" align="center">
+              <h3 class="footer-title">Contact Us</h3>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+              </ul>
+             </div>
 						</div>
 
 						<div class="clearfix visible-xs"></div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Information</h3>
-								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Service</h3>
-								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="#">Log Out</a></li>
-								<?php	} ?>	
-								</ul>
-							</div>
-						</div>
 					</div>
 					<!-- /row -->
 				</div>
@@ -210,27 +199,8 @@
 			</div>
 			<!-- /top footer -->
 
-			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</span>
-						</div>
-					</div>
-						<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
-
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

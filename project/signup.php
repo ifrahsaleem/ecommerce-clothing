@@ -43,8 +43,8 @@
 				<div class="container">
 					<ul class="header-links pull-right">
 						<?php
-							if (isset($_SESSION['username']))
-								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
+							if (isset($_SESSION['usernameCustomer']))
+								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>';
 							else
 								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
 						?>
@@ -72,7 +72,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -164,7 +164,7 @@
 
 				</div>
 				</form>
-				
+
 				<div class="col-md-3"></div>
 				<!-- /row -->
 			</div>
@@ -172,7 +172,7 @@
 		</div>
 		<!-- /SECTION -->
 
-	
+
 
 		<!-- FOOTER -->
 		<footer id="footer">
@@ -240,7 +240,7 @@
 						<div class="col-md-12 text-center">
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>

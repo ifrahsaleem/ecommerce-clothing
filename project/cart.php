@@ -71,8 +71,11 @@
 										echo '<div>
 													<a class="btn btn-secondary" href="homepage.php" type="button" aria-haspopup="true" aria-expanded="false">
 													Home Page
-													</a>
-										</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
+													</a>';
+										if (isset($_SESSION['usernameCustomer']))
+											echo '</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
+
+
 								?>
 								</div>
 
@@ -145,9 +148,9 @@
               $total = 0;
 							$counter = 0;
 							$_SESSION['button']="button";
+
             	while($row = mysqli_fetch_assoc($resultt))
             	{
-								$_SESSION['cart'] = true;
 								$pid = $row['pid'];
             		$productName = $row['Name'];
             		$productPrice = $row['Price'];
@@ -172,6 +175,12 @@
 								 </tr> <?php
             	}
 							$_SESSION['total'] = $total;
+							if ($total > 0){
+								$_SESSION['auth'] = true;
+							}
+							else{
+								$_SESSION['auth'] = false;
+							}
             ?>
 
 							<script>
@@ -253,7 +262,7 @@
 
 									<br><br>
 									<p class="col-md-3"></p>
-									<a href="categories.php" class="btn btn-primary col-md-6" style=margin:7px; > Continue Shpping </a>
+									<a href="categories.php" class="btn btn-primary col-md-6" style=margin:7px; > Continue Shopping </a>
 									<p class="col-md-3"></p>
 									<a href="checkout.php" class="btn btn-success col-md-6"style=margin:7px;> Checkout </a>
 									<div style=margin:30px;></div>

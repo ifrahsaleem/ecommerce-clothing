@@ -25,16 +25,18 @@
       $count= $count + 1;
     }
 
-    if(isset($_POST['name'], $_POST['surname'],$_POST['address'], $_POST['creditCardNo'], $_POST['creditCardName'], $_POST['expiry_year'], $_POST['expiry_month']))
+    if(isset($_POST['name'], $_POST['surname'],$_POST['email'],$_POST['address'], $_POST['creditCardNo'], $_POST['creditCardName'], $_POST['expiry_year'], $_POST['expiry_month'], $_POST['cvc']))
     {
 
         $name = $_POST['name'];
         $surname = $_POST['surname'];
+        $email = $_POST['email'];
         $address = $_POST['address'];
         $creditCardNo = $_POST['creditCardNo'];
         $creditCardName = $_POST['creditCardName'];
         $creditCardExpYear = $_POST['expiry_year'];
         $creditCardExpMonth = $_POST['expiry_month'];
+        $cvc = $_POST['cvc'];
         if (($creditCardExpMonth/ 10) >=1){
           $expr = $creditCardExpYear.'-'.$creditCardExpMonth.'-01';
         }else{
@@ -47,7 +49,7 @@
         $result = mysqli_query($db, $sql_statement);
 
         $sql_statement = "UPDATE customers
-                          SET creditName = '$creditCardName' , billingAddress = '$address', creditCardNo = '$creditCardNo', creditCardExpDate = '$expr'
+                          SET creditName = '$creditCardName', Email='$email', billingAddress = '$address', creditCardNo = '$creditCardNo', creditCardExpDate = '$expr', creditCardPin = '$cvc'
                           WHERE userId = $uId";
 
         $result = mysqli_query($db, $sql_statement);

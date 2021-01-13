@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['cart']))
+if(!$_SESSION['auth'])
 {
     header("Location: homepage.php");
 }
