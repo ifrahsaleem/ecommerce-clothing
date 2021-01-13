@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "config.php";
-
+include "userAutocheck.php";
 $user = $_SESSION['customerId'];
 ?>
 

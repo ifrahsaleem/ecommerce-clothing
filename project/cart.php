@@ -109,7 +109,6 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="homepage.php">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
-            <li><a href="orders.php">Orders</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
