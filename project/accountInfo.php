@@ -124,8 +124,6 @@
 		<!-- /NAVIGATION -->
 		<div style=padding-left:100px;>
 		<?php
-
-		    include "userAutocheck.php";
 		    include "config.php";
 		    $uId = $_SESSION['customerId'];
 		    $sql_statement = "SELECT * FROM customers  WHERE userId = $uId";
