@@ -73,7 +73,7 @@
 													Home Page
 													</a>';
 										if (isset($_SESSION['usernameCustomer']))
-											echo '</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';		
+											echo '</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
 
 
 								?>
