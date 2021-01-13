@@ -2,13 +2,7 @@
 
     session_start();
 
-    $products = array(' ', 'WOOL BLEND COAT WITH BELT', 'Velvet Dress', 'Flowy palazzo trousers', 'Leather Bag', 'Lace up track sole boots', 'RhineStone Hoop Earings', 'Lyocell cotton shirt', 'Sweatshirt', 'Denim shorts', 'Mom-fit jeans', 'grey Jan jeans');
-
-    if (isset($_GET['pro_id']))
-        $proName = $products[$_GET['pro_id']];
-    else
-        $proName = "Undefined";
-
+   
     // MySQL DB Connection
     $conn = new mysqli('localhost', 'root', '', 'onlinesstore');
 
@@ -26,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
          <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title><?php echo $proName; ?></title>
+    
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -46,7 +40,7 @@
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
+        <link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -64,80 +58,118 @@
     </head>
     <body>
         <!-- HEADER -->
-        <header>
-            <!-- TOP HEADER -->
-            <div id="top-header">
-                <div class="container">
-                    <ul class="header-links pull-right">
-                        <?php
-                            if (isset($_SESSION['username']))
-                                echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
-                            else
-                                echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
-                        ?>
-                    </ul>
-                </div>
-            </div>
-            <!-- /TOP HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+							<div class="header-logo" align="center">
+								<a href="#" class="logo">
+									<img src="./img/hulu.png" width=200 alt="">
+								</a>
+							</div>
+			</div>
+			<!-- /TOP HEADER -->
 
-            <!-- MAIN HEADER -->
-            <div id="header">
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <!-- LOGO -->
-                        <div class="col-md-3">
-                            <div class="header-logo">
-                                <a href="#" class="logo">
-                                    <img src="./img/hulu.png" alt="" width="300px" height="100px">
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /LOGO -->
+			<!-- MAIN HEADER -->
+			<div id="top-header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
 
-                        <!-- ACCOUNT -->
-                        <div class="col-md-3 clearfix">
-                            <div class="header-ctn">
+						<!-- SEARCH BAR -->
+						<div class="col-md-8">
+							<div class="header-search" padding-left="10px">
+								<form action="search.php" method="POST">
+									<select name="opt" class="input-select">
+										<option value="0">All Categories</option>
+										<option value="1">Coats</option>
+										<option value="2">Dresses</option>
+										<option value="3">Trousers</option>
+										<option value="4">Bags</option>
+										<option value="5">Shoes</option>
+										<option value="6">Accessories</option>
+										<option value="7">Shirts</option>
+										<option value="8">Sweat-shirts</option>
+										<option value="9">Suits</option>
+										<option value="10">Skirts/Shorts</option>
+									</select>
+									<input class="input" name="search" placeholder="Search here">
+									<button class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
 
-                                <!-- Menu Toogle -->
-                                <div class="menu-toggle">
-                                    <a href="#">
-                                        <i class="fa fa-bars"></i>
-                                        <span>Menu</span>
-                                    </a>
-                                </div>
-                                <!-- /Menu Toogle -->
-                            </div>
-                        </div>
-                        <!-- /ACCOUNT -->
-                    </div>
-                    <!-- row -->
-                </div>
-                <!-- container -->
-            </div>
-            <!-- /MAIN HEADER -->
-        </header>
-        <!-- /HEADER -->
+						<!-- ACCOUNT -->
 
-        <!-- NAVIGATION -->
-        <nav id="navigation">
-            <!-- container -->
-            <div class="container">
-                <!-- responsive-nav -->
-                <div id="responsive-nav">
-                    <!-- NAV -->
-                    <ul class="main-nav nav navbar-nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="products.php">Products</a></li>
-                    </ul>
-                    <!-- /NAV -->
-                </div>
-                <!-- /responsive-nav -->
-            </div>
-            <!-- /container -->
-        </nav>
-        <!-- /NAVIGATION -->
+						<div class="col-md-4 clearfix">
+							<div class="header-ctn pull-right">
+								<div class="acc">
+								<?php
+									if (isset($_SESSION['usernameCustomer']))
+										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
+										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
+									else
+										echo '<div class="dropdown pull-right accounts">
+													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														Login
+													</button>
+													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
+														<a class="dropdown-item acc" href="login.php">User</a><br>
+														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
+														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
+													</div>
+										</div>';
+								?>
+								</div>
+								<!-- Cart -->
+								<div class="pull-right">
+									<a href="cart.php" class="btn" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>My Cart</span>
+									</a>
+								</div>
+								<!-- /Cart -->
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+
+      <!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="homepage.php">Home</a></li>
+						<li><a href="categories.php">Categories</a></li>
+						<li><a href="products.php">Products</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
 
         <!-- BREADCRUMB -->
         <div id="breadcrumb" class="section">
@@ -147,9 +179,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="breadcrumb-tree">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Products</a></li>
-                            <li class="active"><?php echo $proName; ?></li>
+                            <li><a href="homepage.php">Home</a></li>
+                            <li><a href="products.php">Products</a></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -167,14 +199,14 @@
                 <div class="row">
                     <!-- STORE -->
                     <div id="store" class="col">
-                        <h1 class="product-title text-center"><?php echo $proName; ?></h1>
+                        
 
                         <!-- store products -->
                         <div class="row">
 
                             <?php
                                 // Fetch products from database
-                                $proID = $_GET['pro_id'];
+                                $proID = $_GET['pid'];
                                 $sql = "SELECT * FROM product WHERE pid=$proID";
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
@@ -183,7 +215,6 @@
                                         ?>
                                         
                                         <!-- product -->
-
                                         <div class="col-md-6 col-xs-6">
 
                                             <div class="product">
@@ -202,7 +233,7 @@
                 </div>
             </div>
         </div>
-                                        <div align= "right">
+                                        <div align= "center">
                                                 <div class="product-body">
 
                                                     <h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a> </h3>
@@ -214,21 +245,35 @@
                                                     
                                                     
                                                 </div>
-                                                <form action="sendproduct.php" method = "POST">
                                                 
                                                 
-                                                    <div class="input-group plus-minus-input">
+                                                
+                                                <?php
+                
+                if ($product['Quantity'] != 0)
+                {
 
-                                                    <input class="input-group-field" type="number" name="quantity" value="0">
+                    ?>
+                  <div class="add-to-cart">
+                 <button class="add-to-cart-btn"><a href="cartquantity.php?pid=<?php echo $proID;?>"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                 </div>
 
-                                                </div>
-                                               
+                 <?php
+                }
+                else
+                {
+                    ?>
+                    <div class="add-to-cart">
+                    <button class="add-to-cart-btn">Out Of Stock!</button>
+                    </div>
 
+                    <?php
+                    }
+                ?>
+                                                
+                                            
 
-                                                <div class="add-to-cart">
-                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                                </div>
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                         
@@ -238,7 +283,7 @@
                                         
                                     }
                                 }
-
+                                include "showingcomments.php";
                             ?>
 
                         <!-- /store products -->
@@ -253,94 +298,48 @@
         <!-- /SECTION -->
 
         <!-- FOOTER -->
-        <footer id="footer">
-            <!-- top footer -->
-            <div class="section">
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">About Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                                <ul class="footer-links">
-                                    <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                    <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-                                </ul>
-                            </div>
-                        </div>
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div>
+							<div class="footer col-md-6" align="center">
+								<h3 class="footer-title">About Us</h3>
+								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+              </div>
+              <div class="footer col-md-6" align="center">
+              <h3 class="footer-title">Contact Us</h3>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+              </ul>
+             </div>
+						</div>
 
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Product</h3>
-                                <ul class="footer-links">
-                                </ul>
-                            </div>
-                        </div>
+						<div class="clearfix visible-xs"></div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
 
-                        <div class="clearfix visible-xs"></div>
+		</footer>
+		<!-- /FOOTER -->
 
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Information</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Orders and Returns</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Service</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">My Account</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /top footer -->
-
-            <!-- bottom footer -->
-            <div id="bottom-footer" class="section">
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <span class="copyright">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </span>
-                        </div>
-                    </div>
-                        <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /bottom footer -->
-        </footer>
-        <!-- /FOOTER -->
-
-        <!-- jQuery Plugins -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/slick.min.js"></script>
-        <script src="js/nouislider.min.js"></script>
-        <script src="js/jquery.zoom.min.js"></script>
-        <script src="js/main.js"></script>
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/jquery.js"></script>
 
 
-
-
-    </body>
+	</body>
 </html>

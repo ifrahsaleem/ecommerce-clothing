@@ -1,7 +1,8 @@
+
 <?php
 
     session_start();
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
          <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title>Products</title>
+        <title>Hulu - Store for Women</title>
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -40,164 +41,122 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <style>
-            .products-row {
-                display: flex;
-                justify-content: space-around;
-            }
-
-            .pro-box {
-                padding: 0.5em;
-                background: #f7f7f7;
-                border-radius: 10px;
-                margin: 2em 0.5em;
-            }
-
-            .pro-box > .pro-bg {
-                height: 400px;
-            }
-
-            .pro-box > h3 {
-                text-align: center;
-                text-transform: uppercase;
-                margin: 1em auto;
-            }
-
-            #pro_coat {
-                background: url('img/products/woolcoat.png') center center;
-                background-size: cover;
-            }
-
-            #pro_cottonshirt {
-                background: url('img/products/cotton shirt.png') center center;
-                background-size: cover;
-            }
-
-            #pro_flowy {
-                background: url('img/products/flowyplazzo.png') center center;
-                background-size: cover;
-            }
-
-            #pro_janjean {
-                background: url('img/products/grey jan.png') center center;
-                background-size: cover;
-            }
-
-            #pro_earring {
-                background: url('img/products/hoop earing.png') center center;
-                background-size: cover;
-            }
-
-            #pro_boots {
-                background: url('img/products/lace boots.png') center center;
-                background-size: cover;
-            }
-
-            #pro_bag {
-                background: url('img/products/leather bag.png') center center;
-                background-size: cover;
-            }
-
-            #pro_sweatshirt {
-                background: url('img/products/sweatshirt.png') center center;
-                background-size: cover;
-            }
-
-            #pro_momfit {
-                background: url('img/products/momfit.png') center center;
-                background-size: cover;
-            }
-
-            #pro_shorts {
-                background: url('img/products/shorts.png') center center;
-                background-size: cover;
-            }
-
-            #pro_dress {
-                background: url('img/products/velvetdress.png') center center;
-                background-size: cover;
-            }
-
-
-        </style>
-
     </head>
     <body>
-        <!-- HEADER -->
-        <header>
-            <!-- TOP HEADER -->
-            <div id="top-header">
-                <div class="container">
-                    <ul class="header-links pull-right">
-                        <?php
-                            if (isset($_SESSION['usernameCustomer']))
-                                echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>';
-                            else
-                                echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
-                        ?>
-                    </ul>
-                </div>
-            </div>
-            <!-- /TOP HEADER -->
+      <!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+							<div class="header-logo" align="center">
+								<a href="#" class="logo">
+									<img src="./img/hulu.png" width=200 alt="">
+								</a>
+							</div>
+			</div>
+			<!-- /TOP HEADER -->
 
-            <!-- MAIN HEADER -->
-            <div id="header">
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <!-- LOGO -->
-                        <div class="col-md-3">
-                            <div class="header-logo">
-                                <a href="#" class="logo">
-                                    <img src="./img/hulu.png" alt="" width="300px" height="100px">
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /LOGO -->
+			<!-- MAIN HEADER -->
+			<div id="top-header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
 
-                        <!-- ACCOUNT -->
-                        <div class="col-md-3 clearfix">
-                            <div class="header-ctn">
+						<!-- SEARCH BAR -->
+						<div class="col-md-8">
+							<div class="header-search" padding-left="10px">
+								<form action="search.php" method="POST">
+									<select name="opt" class="input-select">
+										<option value="0">All Categories</option>
+										<option value="1">Coats</option>
+										<option value="2">Dresses</option>
+										<option value="3">Trousers</option>
+										<option value="4">Bags</option>
+										<option value="5">Shoes</option>
+										<option value="6">Accessories</option>
+										<option value="7">Shirts</option>
+										<option value="8">Sweat-shirts</option>
+										<option value="9">Suits</option>
+										<option value="10">Skirts/Shorts</option>
+									</select>
+									<input class="input" name="search" placeholder="Search here">
+									<button class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
 
-                                <!-- Menu Toogle -->
-                                <div class="menu-toggle">
-                                    <a href="#">
-                                        <i class="fa fa-bars"></i>
-                                        <span>Menu</span>
-                                    </a>
-                                </div>
-                                <!-- /Menu Toogle -->
-                            </div>
-                        </div>
-                        <!-- /ACCOUNT -->
-                    </div>
-                    <!-- row -->
-                </div>
-                <!-- container -->
-            </div>
-            <!-- /MAIN HEADER -->
-        </header>
-        <!-- /HEADER -->
+						<!-- ACCOUNT -->
 
-        <!-- NAVIGATION -->
-        <nav id="navigation">
-            <!-- container -->
-            <div class="container">
-                <!-- responsive-nav -->
-                <div id="responsive-nav">
-                    <!-- NAV -->
-                    <ul class="main-nav nav navbar-nav">
-                        <li><a href="homepage.php">Home</a></li>
-                        <li class="active"><a href="products.php">Products</a></li>
-                    </ul>
-                    <!-- /NAV -->
-                </div>
-                <!-- /responsive-nav -->
-            </div>
-            <!-- /container -->
-        </nav>
-        <!-- /NAVIGATION -->
+						<div class="col-md-4 clearfix">
+							<div class="header-ctn pull-right">
+								<div class="acc">
+								<?php
+									if (isset($_SESSION['usernameCustomer']))
+										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
+										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
+									else
+										echo '<div class="dropdown pull-right accounts">
+													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														Login
+													</button>
+													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
+														<a class="dropdown-item acc" href="login.php">User</a><br>
+														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
+														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
+													</div>
+										</div>';
+								?>
+								</div>
+								<!-- Cart -->
+								<div class="pull-right">
+									<a href="cart.php" class="btn" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>My Cart</span>
+									</a>
+								</div>
+								<!-- /Cart -->
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+
+      <!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="homepage.php">Home</a></li>
+						<li><a href="categories.php">Categories</a></li>
+						<li><a href="products.php">Products</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+               
 
         <!-- BREADCRUMB -->
         <div id="breadcrumb" class="section">
@@ -206,10 +165,9 @@
                 <!-- row -->
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="breadcrumb-header">Products</h3>
                         <ul class="breadcrumb-tree">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Products</li>
+                            <li><a href="homepage.php">Home</a></li>
+                            <li class="active"><a href="products.php">Products</a></li>
                         </ul>
                     </div>
                 </div>
@@ -218,173 +176,97 @@
             <!-- /container -->
         </div>
         <!-- /BREADCRUMB -->
-
+        <div class="row" style="margin-bottom: 5em;">
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<form method="POST">
+									<h5>Filter by Price</h5>
+									<div class="price-filter">
+										<div id="price-slider"></div>
+										<div class="input-number price-min">
+											<input id="price-min" name="price-min" type="number">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+										<span>-</span>
+										<div class="input-number price-max">
+											<input id="price-max" name="price-max" type="number">
+											<span class="qty-up">+</span>
+											<span class="qty-down">-</span>
+										</div>
+									</div>
+									<input type="radio" name="order" value="ASC" checked /> Ascending order<br />
+									<input type="radio" name="order" value="DESC" /> Descending order<br />
+									<input class="primary-btn" style="margin-top: 1em; float: right; background: #d10024" type="submit" value="Filter"/>
+								</form>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
         <!-- SECTION -->
         <div class="section">
             <!-- container -->
             <div class="container">
                 <!-- row -->
-                <div class="row products-row">
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_coat" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=1">Wool Blend Coat With Belt</a></h3>
+                <div class="row">
+                    <!-- STORE -->
+                    <div id="store" class="col-md-9">
+                        <!-- store products -->
+                        <div class="row">
+                            <!-- product -->
+                            <?php include "user_allproducts.php" ?>
+                            <!-- /product -->
                     </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_cottonshirt" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=7">Lyocell Cotton Shirt</a></h3>
-                    </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_flowy" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=3">Flowy palazzo trousers</a></h3>
-                    </div>
+                    <!-- /STORE -->
                 </div>
                 <!-- /row -->
-
-                <!-- row -->
-                <div class="row products-row">
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_janjean" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=11">grey Jan jeans</a></h3>
-                    </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_earring" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=6">RhineStone Hoop Earings</a></h3>
-                    </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_boots" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=5">Lace up track sole boots</a></h3>
-                    </div>
-                </div>
-                <!-- /row -->
-
-                <!-- row -->
-                <div class="row products-row">
-                     <div class="col-md-4 pro-box">
-                        <div id="pro_bag" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=4">Leather Bag</a></h3>
-                    </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_sweatshirt" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=8">Sweatshirt</a></h3>
-                    </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_momfit" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=10">Mom-fit jeans</a></h3>
-                    </div>
-                </div>
-                <!-- /row -->
-
-                <!-- row -->
-                <div class="row products-row">
-                     <div class="col-md-4 pro-box">
-                        <div id="pro_shorts" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=9">Denim shorts</a></h3>
-                    </div>
-                    <div class="col-md-4 pro-box">
-                        <div id="pro_dress" class="pro-bg"></div>
-                        <h3><a href="product.php?pro_id=2">Velvet Dress</a></h3>
-                    </div>
-                </div>
-                <!-- /row -->
+            </div>
             <!-- /container -->
-        </div>
         </div>
         <!-- /SECTION -->
 
+<!-- FOOTER -->
+<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div>
+							<div class="footer col-md-6" align="center">
+								<h3 class="footer-title">About Us</h3>
+								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+              </div>
+              <div class="footer col-md-6" align="center">
+              <h3 class="footer-title">Contact Us</h3>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+              </ul>
+             </div>
+						</div>
+
+						<div class="clearfix visible-xs"></div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
+
+		</footer>
+		<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/jquery.js"></script>
 
 
-        <!-- FOOTER -->
-        <footer id="footer">
-            <!-- top footer -->
-            <div class="section">
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">About Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                                <ul class="footer-links">
-                                    <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                    <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Products</h3>
-                                <ul class="footer-links">
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="clearfix visible-xs"></div>
-
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Information</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Orders and Returns</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Service</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">My Account</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /top footer -->
-
-            <!-- bottom footer -->
-            <div id="bottom-footer" class="section">
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <span class="copyright">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </span>
-                        </div>
-                    </div>
-                        <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /bottom footer -->
-        </footer>
-        <!-- /FOOTER -->
-
-        <!-- jQuery Plugins -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/slick.min.js"></script>
-        <script src="js/nouislider.min.js"></script>
-        <script src="js/jquery.zoom.min.js"></script>
-        <script src="js/main.js"></script>
-
-        <?php
-
-        include "config.php";
-
-
-        ?>
-    </body>
+	</body>
 </html>
