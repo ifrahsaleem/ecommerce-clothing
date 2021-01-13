@@ -50,6 +50,7 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
 </style>
 
     </head>
@@ -119,7 +120,7 @@ tr:nth-child(even) {
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
                         <li > <a href="./smwelcome.php">My Account</a></li>
-						<li class="active"> <a href="#">View and Manage Orders</a></li>
+						<li> <a href="./displayorders.php">View and Manage Orders</a></li>
 						
 					</ul>
 					<!-- /NAV -->
@@ -137,51 +138,90 @@ tr:nth-child(even) {
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row">
-				
+            
 				<table>
-					<tr> <th>Order Number </th> <th>Customer ID </th> <th> Order Date</th> <th> Shipped Date</th> <th> Total Bill</th> <th> Billing Date</th>  <th> Order Status</th> <th> Edit Status</th> </tr>
-				<?php
+                <tr> <th>Product </th> <th> Price</th> <th>Quantity </th> </tr>
+                <?php
+                  include "config.php";
+			      session_start();
+			      error_reporting(0);
+			      $getuser=$_SESSION['usersm'];
+			      if ($getuser== true)
+			      {
 
-			   include "config.php";
-			   session_start();
-			   error_reporting(0);
-			   $getuser=$_SESSION['usersm'];
-			   if ($getuser== true)
-			   {
+			      }
+			      else
+			      {
+				    header("Location: sm_loginPage.php");
+                  }
+                  
+                
+                 
+                    
+                         
+                  if (!($id = (isset($_GET['id']) ? (int) $_GET['id'] : 0))) 
+                  {
+                    echo 'Error: Company ID is required!';
+                  }
+                  else 
+                  {
+                      $id = $_GET['id'];
+                      $sql_statement = "SELECT C.*, P.Name,OD.*,O.TotalPrice,O.Orderdate,O.billingDate FROM orders O,orderdetails OD, product P, customers C WHERE C.userId=O.userId AND O.orderID=OD.orderID AND P.pid=OD.pid AND OD.orderID='" . $_GET['id'] . "'";
+                      $data = mysqli_query($db, $sql_statement);
+                      $result= mysqli_fetch_assoc($data);
+                      echo"<h2>Invoice </h2>";
+                      echo"<br>";
+                      echo"<br>";
+                      echo"<h4 >Order Number: </h4>".$result['orderID'];
+                      echo"<br>";
+                      echo"<br>";
+                      echo"<h4 >User Identification: </h4>".$result['creditName'];
+                      echo"<br>";
+                      echo"<br>";
+                      echo"<h4 >Credit Card Number: </h4>".$result['creditCardNo'];
+                      echo"<br>";
+                      echo"<br>";
+                      echo"<h4>Billing Address: </h4>".$result['billingAddress'];
+                      echo"<br>";
+                      echo"<br>";
+                      echo"<h4>Order Placed on:</h4>".$result['Orderdate'];
+                      echo"<br>";
+                      echo"<br>";
+                      echo"<h4>Billing Date: </h4>".$result['billingDate'];
+                      echo"<br>";
+                      echo"<br>";
+                    
+                      echo"<h4>Total Price:</h4>".$result['TotalPrice'];
+                      echo"<br>";
+                      echo"<br>";
 
-			   }
-			   else
-			   {
-				header("Location: sm_loginPage.php");
-			   }
-			   
+                      echo"<h2>Details: </h2>";
+                      echo"<br>";
 
-	$sql_statement = "SELECT * FROM orders O";
+                      $result = mysqli_query($db, $sql_statement);
+                      while($row = mysqli_fetch_assoc($result))
+	                {
+                
+                        echo "<tr>";
+                        
+                        echo "<td>" . $row['Name'] . "</td>";
+                        echo "<td>" . $row['Price'] . "</td>";
+                        echo "<td>" . $row['Quantity']. "</td>";
+                       
+                        echo "</tr>";
+                    }
+                    
+                    
+                     
+                    
+                  }
+                  
+                  
+           
+             ?>
+             </table>
 
-	$result = mysqli_query($db, $sql_statement);
-
-	while($row = mysqli_fetch_assoc($result))
-	{
-		
-		echo "<tr>";
-		//echo "<td><a href=\"sm_displayinvoice.php/" . $orderID . "\"> " . $orderID. " </a> </td>";
-		echo '<td><a href="sm_displayinvoice.php?id='. $row['orderID']. '">'. $row['orderID'].'</a></td>';
-        echo "<td>" . $row['userId']. "</td>";
-        echo "<td>" . $row['Orderdate'] . "</td>";
-		echo "<td>" . $row['ShippedDate'] . "</td>";
-		echo "<td>" . $row['TotalPrice']. "</td>";
-		echo "<td>" . $row['billingDate'] . "</td>";
-		echo "<td>" . $row['OrderStatus'] . "</td>";
-		echo '<td><a href="editorderstatus.php?id='. $row['orderID']. '">Edit</a></td>';
-      
-		
-		echo "</tr>";
-		
-		
-	}?>
-
-                </table>
+            
 
 				</div>
 				<!-- /row -->
@@ -189,8 +229,7 @@ tr:nth-child(even) {
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-		
+        
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->

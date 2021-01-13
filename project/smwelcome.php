@@ -101,7 +101,8 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
                         <li class="active"> <a href="#">My Account</a></li>
-						<li > <a href="./displayorders.php">Manage Orders</a></li>
+						<li > <a href="./displayorders.php">View and Manage Orders</a></li>
+						
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -123,7 +124,7 @@
 					   include "config.php";
 					   session_start();
 					   error_reporting(0);
-					   $getuserId=$_SESSION['userId'];
+					   $getuserId=$_SESSION['usersm'];
 					   if ($getuserId== true)
 					   {
 
@@ -159,6 +160,41 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+		
+		<!-- FOOTER -->
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div>
+							<div class="footer col-md-6" align="center">
+								<h3 class="footer-title">About Us</h3>
+								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+              </div>
+              <div class="footer col-md-6" align="center">
+              <h3 class="footer-title">Contact Us</h3>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+              </ul>
+             </div>
+						</div>
+
+						<div class="clearfix visible-xs"></div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
+
+		</footer>
+		<!-- /FOOTER -->
+
 
 
 		<!-- jQuery Plugins -->
