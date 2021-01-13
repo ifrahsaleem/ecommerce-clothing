@@ -177,7 +177,7 @@
                                         ?>
                                         
                                         <!-- product -->
-
+                                        <div align= "center">
                                         <div class="col-md-6 col-xs-6">
 
                                             <div class="product">
@@ -191,12 +191,13 @@
                                             </div>
 
                                         </div>
+                                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-                                        <div align= "right">
+                                        <div align= "center">
                                                 <div class="product-body">
 
                                                     <h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a> </h3>
