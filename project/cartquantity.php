@@ -19,7 +19,7 @@ $user = $_SESSION['customerId'];
                         
 
                   $sql_statement = "INSERT INTO cart(userId, pid, NumberOfProducts, totalPriceOfProduct
-                                    VALUE ('$user', '$pid', '1', '$price');
+                                    VALUE ('$user', '$pid', '1', '$price')";
                 $result2 = mysqli_query($db, $sql_statement);
 
 

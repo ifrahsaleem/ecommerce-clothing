@@ -213,7 +213,7 @@
                                                 
                                                 <?php
                 
-                if ($Quantity != 0)
+                if ($product['Quantity'] != 0)
                 {
 
                     ?>
