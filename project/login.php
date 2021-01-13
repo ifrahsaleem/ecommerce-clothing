@@ -1,19 +1,46 @@
 <?php
 
 	session_start();
-	include "pm_authCheck.php"
-?>
 
+	if (isset($_POST['username'])) {
+		// MySQL DB Connection
+		$conn = new mysqli('localhost', 'root', '', 'onlinesstore');
+
+		if ($conn->connect_error) {
+		  die("Connection failed: " . $conn->connect_error);
+		}
+
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+
+		$query = "SELECT * FROM customers C WHERE C.Username='$username' AND C.Password='$password';";
+		$result = $conn->query($query);
+
+
+		if ($result->num_rows > 0) {
+			$loggedIn = true;
+			$_SESSION["usernameCustomer"] = $username;
+		}
+		else {
+			$invalid = true;
+		}
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['customerId']=$row['userId'];
+	}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Hulu - Store for Women</title>
+		<title>Login</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -48,16 +75,19 @@
 			<!-- TOP HEADER -->
 			<div id="top-header">
 				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"></i> Product Manager Dashboard</a></li>
-					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="./pm_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
-						<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
+						<?php
+							if (isset($_SESSION['usernameCustomer']))
+								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>';
+							else
+								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
+
+						?>
+
+                    <br>
+                    <button onclick="location.href = './signup.php';" class="btn btn-primary btn-block btn-xs">Sign Up</button>
+
+                </div>
 					</ul>
 				</div>
 			</div>
@@ -82,7 +112,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -111,9 +141,8 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li ><a href="#">Home</a></li>
-						<li ><a href="./addProduct.php">Add Product</a></li>
-						<li class="active"> <a href="#">Product</a></li>
+						<li class="active"><a href="homepage.php">Home</a></li>
+						<li><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -130,10 +159,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Login</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li class="active"><a href="#">Products</a></li>
-							<li >Add</li>
+							<li><a href="homepage.php">Home</a></li>
+							<li class="active">Login</li>
 						</ul>
 					</div>
 				</div>
@@ -149,24 +178,58 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- STORE -->
-					<div id="store" class="col-md-9">
-						<!-- store products -->
-						<div class="row">
-							<!-- product -->
-							<?php include "pm_displayProduct.php" ?>
-							<!-- /product -->
+
+					<div class="col-md-3"></div>
+
+
+
+
+					<div class="col-md-6" style="background: #f7f7f7; padding: 2em; border-radius: 1em">
+						<?php if (isset($_SESSION['usernameCustomer'])) {
+
+							?>
+
+							<h2 class="text-center">You are logged in!</h2>
+
+						<?php } else { ?>
+
+							<form method="POST">
+								<div class="section-title text-center">
+									<h3 class="title">Enter your credentials</h3>
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="username" placeholder="Username">
+								</div>
+								<div class="form-group">
+									<input class="input" type="password" name="password" placeholder="Password">
+								</div>
+								<div class="form-group text-center">
+									<input type="submit" class="primary-btn" value="Login" />
+								</div>
+								<?php if (isset($invalid)) { ?>
+									<div class="form-group text-center">
+										<h5 style="color: red">Invalid username or password!</h5>
+									</div>
+								<?php } ?>
+							</form>
+
+						<?php } ?>
 					</div>
-					<!-- /STORE -->
+
+
 				</div>
+
+				<div class="col-md-3"></div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
 
-<!-- FOOTER -->
-<footer id="footer">
+
+
+		<!-- FOOTER -->
+		<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
@@ -213,11 +276,6 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
-									<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
 								</ul>
 							</div>
 						</div>
@@ -236,7 +294,7 @@
 						<div class="col-md-12 text-center">
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -248,7 +306,6 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
-
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

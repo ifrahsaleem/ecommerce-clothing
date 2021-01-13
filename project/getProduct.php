@@ -1,9 +1,30 @@
 <?php
 
 	session_start();
-	include "pm_authCheck.php"
-?>
+	include "pm_authCheck.php";
+	include "config.php";
 
+	if(isset($_GET['pid']))
+	{
+		$sql_statement = "SELECT P.*, C.Name AS categoryName, C.cid AS categoryId FROM product P, category C WHERE P.pid='" . $_GET['pid'] . "' AND P.cid = C.cid";
+	
+		$result = mysqli_query($db, $sql_statement);
+		$row = mysqli_fetch_assoc($result);
+		
+		if($row['isDeleted'] == 0)
+		{
+			$categoryName = $row['categoryName'];
+			$pid = $row['pid'];
+			$PMid = $row['PMid'];
+			$Name = $row['Name'];
+			$Price = $row['Price'];
+			$Quantity = $row['Quantity'];
+			$Size = $row['Size'];
+			$Picture = $row['Picture'];
+			$categoryId = $row['categoryId'];
+		}
+	}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -112,8 +133,8 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li ><a href="#">Home</a></li>
-						<li ><a href="./addProduct.php">Add Product</a></li>
-						<li class="active"> <a href="#">Product</a></li>
+						<li><a href="./addProduct.php">Add Product</a></li>
+						<li><a href="./displayProduct.php">Product</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -131,9 +152,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li class="active"><a href="#">Products</a></li>
-							<li >Add</li>
+							<li><a href="./pm_homePage.php">Home</a></li>
+							<li><a href="./displayProduct.php">Products</a></li>
+							<li>Edit</li>
 						</ul>
 					</div>
 				</div>
@@ -143,30 +164,70 @@
 		</div>
 		<!-- /BREADCRUMB -->
 
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
+		<!-- FORM-->
+		<div>
 			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- STORE -->
-					<div id="store" class="col-md-9">
-						<!-- store products -->
-						<div class="row">
-							<!-- product -->
-							<?php include "pm_displayProduct.php" ?>
-							<!-- /product -->
-					</div>
-					<!-- /STORE -->
-				</div>
-				<!-- /row -->
+		<form action="pm_editProduct.php?pid=<?php echo $row['pid'];?>" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+			  <label for="exampleFormControlInput1">Name</label>
+			  <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" value="<?php echo $row['Name']; ?>">
 			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
+			<div class="form-group">
+				<label for="exampleFormControlInput2">Price</label>
+				<input type="text" class="form-control" id="exampleFormControlInput2" name="Price" value="<?php echo $row['Price']; ?>">
+			</div>
+			<div class="form-group">
+				<label for="exampleFormControlInput3">Quantity</label>
+				<input type="text" class="form-control" id="exampleFormControlInput3" name="Quantity" value="<?php echo $row['Quantity']; ?>">
+			</div>
+			<div class="form-group">
+				<label for="exampleFormControlInput3">Size</label>
+				<input type="text" class="form-control" id="exampleFormControlInput3" name="Size" value="<?php echo $row['Size']; ?>">
+			</div>
+			
+		<div class="form-group">
+        <label for="exampleFormControlSelect1">Category</label>
+        <select  class="form-control" id="exampleFormControlSelect1" name= "cid">
+			<?php
 
-<!-- FOOTER -->
-<footer id="footer">
+			include "config.php";
+
+			$sql_statement = "SELECT * FROM category";
+
+			$result = mysqli_query($db, $sql_statement);
+
+			while($row = mysqli_fetch_assoc($result))
+			{
+				$CName = $row['Name'];
+				$cid = $row['cid'];
+				
+				if($cid == $categoryId)
+					echo "<option selected>" . $CName . " " . $cid . "</option>";
+				else
+				echo "<option>" . $CName . " " . $cid . "</option>";
+			}
+			?>
+		</select>
+    	</div>
+
+
+			<div class="form-group">
+			<?php echo '<img src="data:image;base64,'.base64_encode($Picture).'" alt="Image">' ?>
+			</div>
+			<div class="form-group">
+				<input type="file" id="Picture" name="Picture">
+			</div>
+			<div class="form-group">
+  				<input type="submit" name="upload" value="Submit" >
+			</div>
+		  </form>
+		</div>
+	</div>
+
+		<!-- FORM-->
+
+		<!-- FOOTER -->
+		<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
@@ -248,7 +309,6 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
-
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

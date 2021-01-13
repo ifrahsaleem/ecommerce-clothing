@@ -1,49 +1,33 @@
-
 <?php
-
-    session_start();
-    
+	session_start();
+	include "config.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>hulu</title>
 
-        <title>Hulu - Store for Women</title>
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
-        <!-- Google font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <!-- Bootstrap -->
-        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
 
-        <!-- Slick -->
-        <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-        <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
 
-        <!-- nouislider -->
-        <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
 
-        <!-- Font Awesome Icon -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-
-        <!-- Custom stlylesheet -->
-        <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+ 		<link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
 
     </head>
-    <body>
-      <!-- HEADER -->
+	<body>
+		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
 			<div id="top-header">
@@ -136,8 +120,7 @@
 		</header>
 		<!-- /HEADER -->
 
-
-      <!-- NAVIGATION -->
+		<!-- NAVIGATION -->
 		<nav id="navigation">
 			<!-- container -->
 			<div class="container">
@@ -145,7 +128,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li><a href="homepage.php">Home</a></li>
+						<li class="active"><a href="#top-header">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
 						<li><a href="products.php">Products</a></li>
 					</ul>
@@ -156,76 +139,58 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-               
+    <!-- /Carousel -->
+    <div class="container-fluid">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" ></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+        </ol>
 
-        <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb-tree">
-                            <li><a href="homepage.php">Home</a></li>
-                            <li class="active"><a href="products.php">Products</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /row -->
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item">
+            <img src="./img/dress.jpg" alt="DRESS" style="width:100%;">
+            <div class="carousel-caption">
+                <h1 style=font-size:150px; style=color:black>INDIRIM</h1>
+              <h2>15 - 25 January</h2>
             </div>
-            <!-- /container -->
-        </div>
-        <!-- /BREADCRUMB -->
-        <div class="row" style="margin-bottom: 5em;">
-							<div class="col-md-4"></div>
-							<div class="col-md-4">
-								<form method="POST">
-									<h5>Filter by Price</h5>
-									<div class="price-filter">
-										<div id="price-slider"></div>
-										<div class="input-number price-min">
-											<input id="price-min" name="price-min" type="number">
-											<span class="qty-up">+</span>
-											<span class="qty-down">-</span>
-										</div>
-										<span>-</span>
-										<div class="input-number price-max">
-											<input id="price-max" name="price-max" type="number">
-											<span class="qty-up">+</span>
-											<span class="qty-down">-</span>
-										</div>
-									</div>
-									<input type="radio" name="order" value="ASC" checked /> Ascending order<br />
-									<input type="radio" name="order" value="DESC" /> Descending order<br />
-									<input class="primary-btn" style="margin-top: 1em; float: right; background: #d10024" type="submit" value="Filter"/>
-								</form>
-							</div>
-							<div class="col-md-4"></div>
-						</div>
-        <!-- SECTION -->
-        <div class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <!-- STORE -->
-                    <div id="store" class="col-md-9">
-                        <!-- store products -->
-                        <div class="row">
-                            <!-- product -->
-                            <?php include "user_allproducts.php" ?>
-                            <!-- /product -->
-                    </div>
-                    <!-- /STORE -->
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /SECTION -->
+          </div>
 
-<!-- FOOTER -->
-<footer id="footer">
+          <div class="item">
+            <img src="./img/bag.jpg" alt="BAG" style="width:100%;">
+            <div class="carousel-caption">
+                <h3 style=font-size:100px>NEW COLLECTION</h3>
+            </div>
+          </div>
+
+          <div class="item active">
+            <img src="./img/sweater.jpg" alt="sweater" style="width:100%;">
+            <div class="carousel-caption">
+                <h1 style=font-size:150px; style=color:black>INDIRIM 50%</h1>
+              <h2>15 - 25 January</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <!-- /Carousel -->
+
+
+		<!-- FOOTER -->
+		<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->

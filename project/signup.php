@@ -1,10 +1,3 @@
-<?php
-
-	session_start();
-	include "pm_authCheck.php"
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Hulu - Store for Women</title>
+		<title>Sign Up</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -48,16 +41,13 @@
 			<!-- TOP HEADER -->
 			<div id="top-header">
 				<div class="container">
-					<ul class="header-links pull-left">
-						<li><a href="#"></i> Product Manager Dashboard</a></li>
-					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="./pm_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
-						<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
+						<?php
+							if (isset($_SESSION['usernameCustomer']))
+								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>';
+							else
+								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
+						?>
 					</ul>
 				</div>
 			</div>
@@ -82,7 +72,7 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -111,9 +101,8 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li ><a href="#">Home</a></li>
-						<li ><a href="./addProduct.php">Add Product</a></li>
-						<li class="active"> <a href="#">Product</a></li>
+						<li><a href="index.php">Home</a></li>
+						<li><a href="categories.php">Categories</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -130,10 +119,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Sign Up</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li class="active"><a href="#">Products</a></li>
-							<li >Add</li>
+							<li><a href="home.php">Home</a></li>
+							<li class="active">Sign Up</li>
 						</ul>
 					</div>
 				</div>
@@ -149,24 +138,44 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- STORE -->
-					<div id="store" class="col-md-9">
-						<!-- store products -->
-						<div class="row">
-							<!-- product -->
-							<?php include "pm_displayProduct.php" ?>
-							<!-- /product -->
+				<form action="user_signup.php" method="POST">
+					<div class="col-md-3"></div>
+
+					<div class="col-md-6" style="background: #f7f7f7; padding: 2em; border-radius: 1em">
+						<div class="section-title">
+							<h4>Please fill out this form to create an account</h4>
+						</div>
+						<div class="form-group">
+							<input class="input" type="email" name="email_address" placeholder="Email Address">
+						</div>
+						<div class="form-group">
+							<input class="input" type="text" name="username" placeholder="Username">
+						</div>
+						<div class="form-group">
+							<input class="input" type="password" name="password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<input class="input" type="password" name="confirm_password" placeholder="Password (Again)">
+						</div>
+						<div class="form-group text-center">
+							<input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up"/>
+						</div>
 					</div>
-					<!-- /STORE -->
+
 				</div>
+				</form>
+
+				<div class="col-md-3"></div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
 
-<!-- FOOTER -->
-<footer id="footer">
+
+
+		<!-- FOOTER -->
+		<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
 				<!-- container -->
@@ -213,11 +222,6 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
-									<?php if($_SESSION['authorized'])
-									{
-										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
 								</ul>
 							</div>
 						</div>
@@ -236,7 +240,7 @@
 						<div class="col-md-12 text-center">
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -248,7 +252,6 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
-
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

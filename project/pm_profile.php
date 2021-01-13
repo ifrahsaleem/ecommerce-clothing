@@ -1,9 +1,7 @@
 <?php
-
 	session_start();
 	include "pm_authCheck.php"
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -111,9 +109,9 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li ><a href="#">Home</a></li>
+						<li class="active"><a href="#">Home</a></li>
 						<li ><a href="./addProduct.php">Add Product</a></li>
-						<li class="active"> <a href="#">Product</a></li>
+						<li > <a href="./displayProduct.php">Product</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -123,46 +121,15 @@
 		</nav>
 		<!-- /NAVIGATION -->
 
-		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li class="active"><a href="#">Products</a></li>
-							<li >Add</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
+	
+    <!-- SECTION -->
+    <div class="section">
+		<div class="container">
+			<div class="row">
+				<?php include "pm_profileQuery.php";?>
 			</div>
-			<!-- /container -->
 		</div>
-		<!-- /BREADCRUMB -->
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- STORE -->
-					<div id="store" class="col-md-9">
-						<!-- store products -->
-						<div class="row">
-							<!-- product -->
-							<?php include "pm_displayProduct.php" ?>
-							<!-- /product -->
-					</div>
-					<!-- /STORE -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+	</div>
 		<!-- /SECTION -->
 
 <!-- FOOTER -->
@@ -176,6 +143,7 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
+								
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
@@ -216,8 +184,8 @@
 									<?php if($_SESSION['authorized'])
 									{
 										?>
-										<li><a href="pm_logOut.php">Log Out</a></li>
-								<?php	} ?>
+										<li><a href="#">Log Out</a></li>
+								<?php	} ?>	
 								</ul>
 							</div>
 						</div>

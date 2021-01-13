@@ -1,3 +1,10 @@
+<?php
+session_start();
+include "config.php";
+
+$user = $_SESSION['customerId'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,7 +33,7 @@
 
         <!-- Custom stlylesheet -->
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
+        <link type="text/css" rel="stylesheet" href="css/guljahan.css"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -35,7 +42,7 @@
         <![endif]-->
 
         <style>
-            
+
             .orders-row {
                 display: flex;
                 justify-content: space-around;
@@ -62,80 +69,119 @@
     </head>
     <body>
         <!-- HEADER -->
-        <header>
-            <!-- TOP HEADER -->
-            <div id="top-header">
-                <div class="container">
-                    <ul class="header-links pull-right">
-                        <?php
-                            if (isset($_SESSION['username']))
-                                echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
-                            else
-                                echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
-                        ?>
-                    </ul>
-                </div>
-            </div>
-            <!-- /TOP HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+							<div class="header-logo" align="center">
+								<a href="#" class="logo">
+									<img src="./img/hulu.png" width=200 alt="">
+								</a>
+							</div>
+			</div>
+			<!-- /TOP HEADER -->
 
-            <!-- MAIN HEADER -->
-            <div id="header">
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <!-- LOGO -->
-                        <div class="col-md-3">
-                            <div class="header-logo">
-                                <a href="#" class="logo">
-                                    <img src="./img/hulu.png" alt="" width="300px" height="100px">
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /LOGO -->
+			<!-- MAIN HEADER -->
+			<div id="top-header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
 
-                        <!-- ACCOUNT -->
-                        <div class="col-md-3 clearfix">
-                            <div class="header-ctn">
-                                
-                                <!-- Menu Toogle -->
-                                <div class="menu-toggle">
-                                    <a href="#">
-                                        <i class="fa fa-bars"></i>
-                                        <span>Menu</span>
-                                    </a>
-                                </div>
-                                <!-- /Menu Toogle -->
-                            </div>
-                        </div>
-                        <!-- /ACCOUNT -->
-                    </div>
-                    <!-- row -->
-                </div>
-                <!-- container -->
-            </div>
-            <!-- /MAIN HEADER -->
-        </header>
-        <!-- /HEADER -->
+						<!-- SEARCH BAR -->
+						<div class="col-md-8">
+							<div class="header-search" padding-left="10px">
+								<form action="search.php" method="POST">
+									<select name="opt" class="input-select">
+										<option value="0">All Categories</option>
+										<option value="1">Coats</option>
+										<option value="2">Dresses</option>
+										<option value="3">Trousers</option>
+										<option value="4">Bags</option>
+										<option value="5">Shoes</option>
+										<option value="6">Accessories</option>
+										<option value="7">Shirts</option>
+										<option value="8">Sweat-shirts</option>
+										<option value="9">Suits</option>
+										<option value="10">Skirts/Shorts</option>
+									</select>
+									<input class="input" name="search" placeholder="Search here">
+									<button class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
 
-        <!-- NAVIGATION -->
-        <nav id="navigation">
-            <!-- container -->
-            <div class="container">
-                <!-- responsive-nav -->
-                <div id="responsive-nav">
-                    <!-- NAV -->
-                    <ul class="main-nav nav navbar-nav">
-                        <li><a href="homepage.php">Home</a></li>
-                        <li><a href="orders.php">Orders</a></li>
-                    </ul>
-                    <!-- /NAV -->
-                </div>
-                <!-- /responsive-nav -->
-            </div>
-            <!-- /container -->
-        </nav>
-        <!-- /NAVIGATION -->
+						<!-- ACCOUNT -->
+
+						<div class="col-md-4 clearfix">
+							<div class="header-ctn pull-right">
+								<div class="acc">
+								<?php
+									if (isset($_SESSION['usernameCustomer']))
+										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
+										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
+									else
+										echo '<div class="dropdown pull-right accounts">
+													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														Login
+													</button>
+													<div class="dropdown-menu acc" aria-labelledby="dropdownMenuButton">
+														<a class="dropdown-item acc" href="login.php">User</a><br>
+														<a class="dropdown-item acc" href="pm_loginPage.php">Product Manager</a><br>
+														<a class="dropdown-item acc" href="sm_loginPage.php">Sales Manager</a><br>
+													</div>
+										</div>';
+								?>
+								</div>
+								<!-- Cart -->
+								<div class="pull-right">
+									<a href="cart.php" class="btn" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>My Cart</span>
+									</a>
+								</div>
+								<!-- /Cart -->
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+
+      <!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="homepage.php">Home</a></li>
+						<li><a href="categories.php">Categories</a></li>
+						<li><a href="products.php">Products</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
         <!-- BREADCRUMB -->
         <div id="breadcrumb" class="section">
             <!-- container -->
@@ -144,9 +190,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="breadcrumb-tree">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Orders</a></li>
-                            
+                            <li><a href="homepage.php">Home</a></li>
+                            <li><a href="orders.php">Orders</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -155,7 +201,7 @@
             <!-- /container -->
         </div>
         <!-- /BREADCRUMB -->
-        
+
         <!-- SECTION -->
         <div class="section">
             <!-- container -->
@@ -164,7 +210,7 @@
                 <div class="row">
                     <!-- STORE -->
                     <div id="store" class="col">
-                        
+
 
                         <!-- store products -->
                         <div class="row">
@@ -177,9 +223,9 @@
 
                             $sql = "SELECT O.userId,O.orderID, O.Orderdate, O.SMid, O.ShippedDate, O.TotalPrice, O.OrderStatus, O.billingDate,
                             D.pid, D.Price, D.Quantity, P.Name, P.Picture
-                            FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = '1010'";
+                            FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = $user";
                             $result = mysqli_query($db, $sql);
-                            
+
                             while($row = mysqli_fetch_assoc($result)) {
 
                                $pid =  $row["pid"];
@@ -187,13 +233,13 @@
                                         ?>
 
                                         <!-- product -->
-                                        
-                                        
-                       
+
+
+
                                         <div align= "center">
                                                 <div class="product-body">
-                                                
-                                                   
+
+
                                                         <table style="width:100%", border=" 1px solid black">
                                                             <tr>
                                                                 <th>OrderID</th>
@@ -206,7 +252,7 @@
                                                                 <th>Product</th>
                                                                 <th>Price</th>
                                                                 <th>Quantity</th>
-                                                               
+
 
                                                             </tr>
                                                             <tr>
@@ -222,149 +268,98 @@
                                                                 <td> <?php echo $row["Quantity"];?> </td>
 
                                                             </tr>
-                                                            
+
                                                             </table>
-                                                            
+
                                                             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['Picture'] ).'">'. "<br>". "<br>"."<br>" . "<br>". "<br>"; ?>
                                                             <div align= "center">
-                                                            <form action = "orders.php" method = "POST">
+                                                            <form action = "addcomment.php?pid=<?php echo $row['pid'];?> "method = "POST">
 
                                                                 <input type ="number" name = "rating" placeholder = "Your Rating! 0-5"><br>
                     
-                                                                <textarea name ="Comment" placeholder = "Write Your Comments Here"></textarea><br>
-                                                                <button> ADD YOUR COMMENT!</button>
+                                                                <input type ="text" name ="Comment" placeholder = "Write Your Comments Here"><br>
+                                                                <!-- <button> ADD YOUR COMMENT!</button> -->
 
-                                                                <?php
-                                                                $rate = $_POST['rating'];
-                                                                $rev = $_POST['Comment'];
-                                                                $sql_statement = "INSERT INTO comments(Rating, pid, userId, Review)
-                                                                                VALUES ('$rate','$pid','$userid', '$rev')";
-                                                                $result2 = mysqli_query($db, $sql_statement)
-                                                                ?>
+
+
+                                                                <div class="form-group">
+  				                                                <input type="submit" name="submit" value="ADD YOUR COMMENT!" >
+			                                                    </div>
+
                                                                                 
                                                             </form>
                                                             </div>
-                                                   
-                                                    
+
+
                                                 </div>
                                         </div>
                                         <!-- /product -->
 
                                         <?php
                                     }
-                                
+
 
                             ?>
-                        
+
                         </div>
                     </div>
                 </div>
             </div>
         </div><!-- /store products -->
 
-                    
+
                     <!-- /STORE -->
-                
+
                 <!-- /row -->
-            
+
             <!-- /container -->
-        
+
         <!-- /SECTION -->
 
 
      <!-- FOOTER -->
-     <footer id="footer">
-            <!-- top footer -->
-            <div class="section">
-                <!-- container -->
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">About Us</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                                <ul class="footer-links">
-                                    <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                    <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-                                </ul>
-                            </div>
-                        </div>
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div>
+							<div class="footer col-md-6" align="center">
+								<h3 class="footer-title">About Us</h3>
+								<p>Our team:<br>Khadeja Iqbal<br>Guljahan Annagurbanova<br>Ifrah Saleem<br>Haider Khan Jadoon<br>Saif Ul Malook</p>
+              </div>
+              <div class="footer col-md-6" align="center">
+              <h3 class="footer-title">Contact Us</h3>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fa fa-map-marker"></i>CS 306 Project<br>Sabanci University</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i>+01 23 45 67 89<br>+98 76 54 32 10</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i>huluHulu@gmail.com</a></li>
+              </ul>
+             </div>
+						</div>
 
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Product</h3>
-                                <ul class="footer-links">
-                                </ul>
-                            </div>
-                        </div>
+						<div class="clearfix visible-xs"></div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
 
-                        <div class="clearfix visible-xs"></div>
+		</footer>
+		<!-- /FOOTER -->
 
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Information</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Orders and Returns</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                </ul>
-                            </div>
-                        </div>
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/jquery.js"></script>
 
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Service</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">My Account</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /top footer -->
 
-            <!-- bottom footer -->
-            <div id="bottom-footer" class="section">
-                <div class="container">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <span class="copyright">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </span>
-                        </div>
-                    </div>
-                        <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /bottom footer -->
-        </footer>
-        <!-- /FOOTER -->
-
-        <!-- jQuery Plugins -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/slick.min.js"></script>
-        <script src="js/nouislider.min.js"></script>
-        <script src="js/jquery.zoom.min.js"></script>
-        <script src="js/main.js"></script>
-
-        
-                
-        
-    </body>
+	</body>
 </html>
-
-   
-
-

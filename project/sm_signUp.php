@@ -53,7 +53,7 @@
                     <div class="col"></div>
                     <div class="col-md-auto">
                         <h2>Sign Up
-                            <small class="text-muted">Product Manager Dashboard</small>
+                            <small class="text-muted">Sales Manager Dashboard</small>
                         </h2>
                     </div>
                     <div class="col"></div>
@@ -71,37 +71,54 @@
                     <div class="col-3"></div>
                     <div class="col-6">
 
-                    <form action="pm_signUpQuery.php" method="POST">
+                    <form action="sm_signUpQuery.php" method="POST">
                         <div class="form-group row" >
                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" name="PMname" class="form-control" id="inputName" placeholder="Jane Doe">
+                                <input type="text" name="SMname" class="form-control" id="inputName" placeholder="Jane Doe">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" name="PMusername" class="form-control" id="inputUsername" placeholder="Username">
+                                <input type="text" name="SMusername" class="form-control" id="inputUsername" placeholder="Username">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" name="PMemail" class="form-control" id="inputEmail" placeholder="janedoe@gmail.com">
+                                <input type="text" name="SMmail" class="form-control" id="inputEmail" placeholder="janedoe@gmail.com">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" name="PMpass" class="form-control" id="inputPassword" placeholder="Password">
+                                <input type="password" name="SMpass" class="form-control" id="inputPassword" placeholder="Password">
                             </div>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up">
+                        <a href="#myModal" class="trigger-btn" data-toggle="modal"><button type="submit" class="btn btn-primary btn-block btn-lg" action="pm_signUpQuery.php">Sign Up</button></a>
                     </form>
 
+                </div>
+
+                <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header">				
+                                <h4 class="modal-title w-100">Awesome!</h4>	
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">Signup successful. You can now login. </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="location.href = './sm_loginPage.php';" class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-3"></div>  

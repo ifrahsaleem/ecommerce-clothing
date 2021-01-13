@@ -65,6 +65,8 @@ Table OF Contents
 .acc .dropdown-menu{
    background-color: Grey;
 }
+
+
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -321,6 +323,40 @@ textarea.input {
 	Section
 \*----------------------------*/
 
+.carousel-item{
+  background-color: black;
+  position: relative;
+}
+.carousel-inner h1{
+  color:black;
+  overflow: visible;
+  padding-bottom: 40px;
+
+}
+.carousel-inner h2{
+  color:black;
+  padding-bottom: 40px;
+}
+.carousel-inner h3{
+  color:white;
+  padding-bottom: 40px;
+}
+.container-fluid{
+margin-left: 0;
+margin-right: 0;
+padding-left: 0;
+padding-right: 0;
+}
+.carousel-item container{
+  height: 32rem;
+  bottom:0;
+  right:0;
+  left:0;
+  padding-top: 50px;
+}
+#myCarousel{
+  background-color: black; !important
+}
 .section {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -444,7 +480,7 @@ textarea.input {
 
 #top-header {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   background-color: black;
 }
 
@@ -482,7 +518,7 @@ textarea.input {
 }
 
 .header-logo {
-  float: left;
+  float: center;
 }
 
 .header-logo .logo img {
@@ -494,7 +530,8 @@ textarea.input {
 \*----------------------------*/
 
 .header-search {
-  padding: 15px 0px;
+  padding: 5px 10px;
+  display: inline;
 }
 
 .header-search form {
@@ -534,8 +571,8 @@ textarea.input {
   display: inline-block;
 }
 
-.header-ctn > div + div {
-  margin-left: 15px;
+.header-ctn > div + div{
+  margin-left: 10px;
 }
 
 .header-ctn > div > a {
@@ -572,21 +609,30 @@ textarea.input {
 .header-ctn .menu-toggle {
   display: none;
 }
+/* Guljahan*/
+.accounts{
+  padding-left: 12px;
+  padding-top:10px;
+}
+
+#categorylinks{
+  font-size: 20px; !important
+}
 
 .cart-dropdown {
   position: absolute;
   width: 300px;
-  background: #fff;
+  background: #FFF;
   padding: 15px;
-  -webkit-box-shadow: 0px 0px 0px 2px #e4e7ed;
-  box-shadow: 0px 0px 0px 2px #e4e7ed;
+  -webkit-box-shadow: 0px 0px 0px 2px #E4E7ED;
+  box-shadow: 0px 0px 0px 2px #E4E7ED;
   z-index: 99;
   right: 0;
   opacity: 0;
   visibility: hidden;
 }
 
-.dropdown.open > .cart-dropdown {
+.dropdown.open>.cart-dropdown {
   opacity: 1;
   visibility: visible;
 }
@@ -613,39 +659,40 @@ textarea.input {
 }
 
 .cart-dropdown .cart-list .product-widget .product-body .product-price {
-  color: #2b2d42;
+  color: #2B2D42;
 }
 
 .cart-dropdown .cart-btns {
   margin: 0px -17px -17px;
 }
 
-.cart-dropdown .cart-btns > a {
+.cart-dropdown .cart-btns>a {
   display: inline-block;
   width: calc(50% - 0px);
   padding: 12px;
-  background-color: #d10024;
-  color: #fff;
+  background-color: #D10024;
+  color: #FFF;
   text-align: center;
   font-weight: 700;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
 
-.cart-dropdown .cart-btns > a:first-child {
+.cart-dropdown .cart-btns>a:first-child {
   margin-right: -4px;
-  background-color: black;
+  background-color: #1e1f29;
 }
 
-.cart-dropdown .cart-btns > a:hover {
+.cart-dropdown .cart-btns>a:hover {
   opacity: 0.9;
 }
 
 .cart-dropdown .cart-summary {
-  border-top: 1px solid #e4e7ed;
+  border-top: 1px solid #E4E7ED;
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
 
 /*=========================================================
 	03 -> Navigation
@@ -655,8 +702,12 @@ textarea.input {
   background: #fff;
   border-bottom: 2px solid #e4e7ed;
   border-top: 3px solid #d10024;
-}
-
+  font-size: 20px;
+}/*
+#categorylinks{
+  margin-right: 5px;
+  margin-bottom: 5px;
+}*/
 /*----------------------------*\
 	Main nav
 \*----------------------------*/
@@ -730,6 +781,7 @@ textarea.input {
   .main-nav {
     margin: 0px;
     float: none;
+    background-color: black;
   }
   .main-nav > li {
     display: block;
@@ -950,7 +1002,7 @@ textarea.input {
 
 .product .product-body .product-name {
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 14px;
 }
 
 .product .product-body .product-name > a {
@@ -1971,7 +2023,7 @@ textarea.input {
 #newsletter.section {
   border-top: 2px solid #e4e7ed;
   border-bottom: 3px solid #d10024;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .newsletter {
@@ -2064,14 +2116,14 @@ textarea.input {
 }
 
 .footer {
-  margin: 30px 0px;
+  margin: 0px 0px;
 }
 
 .footer .footer-title {
   color: #fff;
   text-transform: uppercase;
   font-size: 18px;
-  margin: 0px 0px 30px;
+  margin: 0px 0px 0px;
 }
 
 .footer-links li + li {
@@ -2351,8 +2403,4 @@ input[type="file"] {
 .trigger-btn {
   display: inline-block;
   margin: 100px auto;
-}
-
-h6 a {
-  color: #b9babc;
 }

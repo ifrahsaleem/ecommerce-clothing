@@ -1,7 +1,14 @@
 <?php
 
-    include "config.php";
+	session_start();
 
+?>
+
+
+<?php
+
+    include "config.php";
+  
     if(isset($_POST['PMpass'], $_POST['PMusername']))
     {
         $PMpass = $_POST['PMpass'];
@@ -11,23 +18,44 @@
 
         $result = mysqli_query($db, $sql_statement);
 
-        while($row = mysqli_fetch_assoc($result))
+        
+        $row = mysqli_fetch_assoc($result);
+       
+        if($row == 0)
         {
-
-            if($row['PMpass'] == $PMpass && $row['PMusername'] == $PMusername)
-            {
-                // set the session
-                $_SESSION['authorized'] = true;
-                //set User Id
-                $_SESSION['userId'] = $row['PMid']; 
-
-                echo $PMname . " logged in successfully.";
-                header("Location: displayProduct.php");
-            }
-
-            else
-                echo "Could not login!";
+           
+            echo '<script type="text/javascript">alert("Incorrect login details!");';
+            echo 'window.location.href = "pm_loginPage.php";';
+            echo '</script>';
+            
         }
+        
+        else 
+        {
+            while($row)
+            {
+
+                if($row['PMpass'] == $PMpass && $row['PMusername'] == $PMusername)
+                {
+                    $check = true;
+                    // set the session
+                    $_SESSION['authorized'] = true;
+                    //set User Id
+                    $_SESSION['userId'] = $row['PMid']; 
+                    $_SESSION['username'] = $row['PMusername'];
+
+                    echo $PMusername . " logged in successfully.";
+                    header("Location: pm_homePage.php");
+                }
+
+                else
+                {
+                    echo "Could not login!";
+                    header("Location: pm_loginPage.php");
+                }
+            }
+        }
+        
     }
     else 
     {

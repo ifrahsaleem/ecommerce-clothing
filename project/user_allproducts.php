@@ -8,8 +8,15 @@ include "config.php";
 
 $sql_statement = "SELECT P.*, C.Name AS categoryName FROM product P, category C WHERE P.cid = C.cid ";
 
-$result = mysqli_query($db, $sql_statement);
 
+
+if (isset($_POST['price-min'])) {
+    $priceMin = $_POST['price-min'];
+    $priceMax = $_POST['price-max'];
+    $order = $_POST['order'];
+    $sql_statement = $sql_statement . " AND Price BETWEEN $priceMin AND $priceMax ORDER BY Price $order";
+}
+$result = mysqli_query($db, $sql_statement);
 while($row = mysqli_fetch_assoc($result))
 {
     
@@ -76,7 +83,9 @@ while($row = mysqli_fetch_assoc($result))
         </div>
         </form>
     <?php 
-    }?>
+    }
+    
+    ?>
 </body>
 </html>
 

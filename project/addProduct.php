@@ -1,3 +1,8 @@
+<?php
+
+	session_start();
+	include "pm_authCheck.php"
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +51,12 @@
 						<li><a href="#"></i> Product Manager Dashboard</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="./pm_profile.php"><i class="fa fa-user-o"></i> My Account</a></li>
+						<?php if($_SESSION['authorized'])
+									{
+										?>
+										<li><a href="pm_logOut.php">Log Out</a></li>
+								<?php	} ?>
 					</ul>
 				</div>
 			</div>
@@ -158,10 +168,10 @@
 			?>
 			
 			<div class="form-group">
-				<input type="file" id="myFile" name="Picture">
+				<input type="file" id="Picture" name="Picture">
 			</div>
 			<div class="form-group">
-  				<input type="submit" >
+  				<input type="submit" name="upload" value="Submit" >
 			</div>
 		  </form>
 		</div>
@@ -217,6 +227,11 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
+									<?php if($_SESSION['authorized'])
+									{
+										?>
+										<li><a href="pm_logOut.php">Log Out</a></li>
+								<?php	} ?>
 								</ul>
 							</div>
 						</div>
