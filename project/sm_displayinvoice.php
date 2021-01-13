@@ -165,7 +165,8 @@ tr:nth-child(even) {
                   }
                   else 
                   {
-                      $id = $_GET['id'];
+					  $id = $_GET['id'];
+					  
                       $sql_statement = "SELECT C.*, P.Name,OD.*,O.TotalPrice,O.Orderdate,O.billingDate FROM orders O,orderdetails OD, product P, customers C WHERE C.userId=O.userId AND O.orderID=OD.orderID AND P.pid=OD.pid AND OD.orderID='" . $_GET['id'] . "'";
                       $data = mysqli_query($db, $sql_statement);
                       $result= mysqli_fetch_assoc($data);
