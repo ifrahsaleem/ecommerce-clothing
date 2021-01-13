@@ -122,8 +122,35 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-    <img src="./img/dress.jpg" style=width:100% class="img-fluid" alt="Responsive image">
+		<div style=padding-left:100px;>
+		<?php
 
+		    include "userAutocheck.php";
+		    include "config.php";
+		    $uId = $_SESSION['customerId'];
+		    $sql_statement = "SELECT * FROM customers  WHERE userId = $uId";
+
+		    $res = mysqli_query($db, $sql_statement);
+
+		    while($row = mysqli_fetch_assoc($res))
+		    {
+		        echo"<h2>WELCOME  </h2>";
+		        echo"<br>";
+		        echo"<br>";
+		        echo"<h4>Username: </h4>".$row['Username'];
+		        echo"<br>";
+		        echo"<br>";
+		        echo"<h4>Email: </h4>".$row['Email'];
+		        echo"<br>";
+		        echo"<br>";
+		        echo"<h4>Address: </h4>".$row['billingAddress'];
+		        echo"<br>";
+		        echo"<br>";
+
+		    }
+
+		?>
+   </div>
 		<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->

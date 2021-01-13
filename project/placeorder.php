@@ -78,8 +78,12 @@
 										echo '<div>
 													<a class="btn btn-secondary" href="homepage.php" type="button" aria-haspopup="true" aria-expanded="false">
 													Home Page
-													</a>
-										</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
+													</a>';
+													;
+										if (isset($_SESSION['usernameCustomer']))
+											echo '</div></div>'.'<div class="acc"><div><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></div>';
+
+
 								?>
 								</div>
 
@@ -135,7 +139,7 @@
 				<?php
 				include "config.php";
 				$uId = $_SESSION["customerId"];
-				$sql_statement = "SELECT C.*, P.Name
+				$sql_statement = "SELECT C.*, P.Name, P.pid
 													FROM cart C, product P
 													WHERE userId =$uId AND C.pid = P.pid";
 
@@ -145,17 +149,27 @@
 					 <div class="order-col">
 						 <tr>
 						<td><?php echo $row['NumberOfProducts'];?>x <?php echo $row['Name'];?></td>
+						<?php
+						$qn = $row['NumberOfProducts'];
+						$prID = $row['pid'];
+						$sql_statement = "UPDATE product P
+					                    SET Quantity = (Quantity - $qn)
+					                    WHERE pid = $prID";
+
+						 $r = mysqli_query($db, $sql_statement);
+						 $uuu = 0;
+						?>
 						<td><?php echo $row["totalPriceOfProduct"]?> TL</td>
 					</tr>
 					</div>
 				 <?php
 				 }
 				?>
-				<?php
+				<?php //empty user's cart
 				include "config.php";
 				$uId = $_SESSION["customerId"];
 				$sql_statement = "DELETE
-											    FROM cart C
+											    FROM cart
 													WHERE userId =$uId";
 				$result = mysqli_query($db, $sql_statement);
 				?>

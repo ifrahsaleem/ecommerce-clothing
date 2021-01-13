@@ -20,7 +20,7 @@
 
 		if ($result->num_rows > 0) {
 			$loggedIn = true;
-			$_SESSION["username"] = $username;
+			$_SESSION["usernameCustomer"] = $username;
 		}
 		else {
 			$invalid = true;
@@ -77,11 +77,17 @@
 				<div class="container">
 					<ul class="header-links pull-right">
 						<?php
-							if (isset($_SESSION['username']))
-								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
+							if (isset($_SESSION['usernameCustomer']))
+								echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>';
 							else
 								echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
+
 						?>
+
+                    <br>
+                    <button onclick="location.href = './signup.php';" class="btn btn-primary btn-block btn-xs">Sign Up</button>
+
+                </div>
 					</ul>
 				</div>
 			</div>
@@ -179,7 +185,7 @@
 
 
 					<div class="col-md-6" style="background: #f7f7f7; padding: 2em; border-radius: 1em">
-						<?php if (isset($_SESSION['username'])) {
+						<?php if (isset($_SESSION['usernameCustomer'])) {
 
 							?>
 

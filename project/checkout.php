@@ -76,8 +76,8 @@
 							<div class="header-ctn pull-right">
 								<div class="acc">
 								<?php
-									if (isset($_SESSION['username']))
-										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
+									if (isset($_SESSION['usernameCustomer']))
+										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
 										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
 									else
 										echo '<div class="dropdown pull-right accounts">
@@ -183,16 +183,22 @@
                   <div class="form-group row">
                       <label for="osurname" class="col-sm-2 col-form-label">Surname</label>
                       <div class="col-sm-10">
-                          <input type="text" name="surname" class="form-control" id="osurname" placeholder="Styles">
+                          <input type="text" name="surname" class="form-control" id="osurname" placeholder="Potter">
                       </div>
                   </div>
-
+									<div class="form-group row">
+											<label for="email" class="col-sm-2 col-form-label">Email</label>
+											<div class="col-sm-10">
+													<input type="email" name="email" class="form-control" id="email" placeholder="potter@gmail.com">
+											</div>
+									</div>
                   <div class="form-group row">
                       <label for="oaddress" class="col-sm-2 col-form-label">Address</label>
                       <div class="col-sm-10">
                           <input type="text" name="address" class="form-control" id="oaddress" placeholder="R87 Street 12 Levis London UK">
                       </div>
                   </div>
+
                   <h3> Payment </h3>
                   <div class="form-group row">
                       <label for="creditCardNo" class="col-sm-2 col-form-label">Credit Card Number</label>
@@ -227,6 +233,12 @@
                               echo '<option value="'.$i.'">'.$i.'</option>';
                           } ?>
                         </select>
+                      </div>
+                  </div>
+									<div class="form-group row">
+                      <label for="creditCardPin" class="col-sm-2 col-form-label">CVC Code</label>
+                      <div class="col-sm-10">
+                          <input type="number" name="cvc" class="form-control" id="cvc" placeholder="cvc">
                       </div>
                   </div>
                   <input type="submit" class="btn btn-primary btn-block btn-lg" value="Update Info">

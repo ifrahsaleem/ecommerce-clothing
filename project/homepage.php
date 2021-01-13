@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include "config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,8 +76,8 @@
 							<div class="header-ctn pull-right">
 								<div class="acc">
 								<?php
-									if (isset($_SESSION['username']))
-										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
+									if (isset($_SESSION['usernameCustomer']))
+										echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
 										<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
 									else
 										echo '<div class="dropdown pull-right accounts">
@@ -129,6 +130,7 @@
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#top-header">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
+						<li><a href="products.php">Products</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -142,14 +144,14 @@
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="0" ></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
         </ol>
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-          <div class="item active">
+          <div class="item">
             <img src="./img/dress.jpg" alt="DRESS" style="width:100%;">
             <div class="carousel-caption">
                 <h1 style=font-size:150px; style=color:black>INDIRIM</h1>
@@ -164,7 +166,7 @@
             </div>
           </div>
 
-          <div class="item">
+          <div class="item active">
             <img src="./img/sweater.jpg" alt="sweater" style="width:100%;">
             <div class="carousel-caption">
                 <h1 style=font-size:150px; style=color:black>INDIRIM 50%</h1>
@@ -186,27 +188,6 @@
     </div>
     <!-- /Carousel -->
 
-		<!-- NEWSLETTER -->
-		<div id="newsletter" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="newsletter">
-							<p>Sign Up for our <strong>NEWSLETTER</strong></p>
-							<form>
-								<input class="input" type="email" placeholder="Your Email">
-								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
 		<footer id="footer">

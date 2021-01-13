@@ -142,7 +142,7 @@
 							<div class="header-search" padding-left="10px">
 								<form action="search.php" method="POST">
 									<select name="opt" class="input-select">
-										<option value="0">All Categories</option>
+										<option value="0">Categories</option>
 										<option value="1">Coats</option>
 										<option value="2">Dresses</option>
                     <option value="3">Trousers</option>
@@ -167,8 +167,8 @@
 							<div class="header-ctn pull-right">
 								<div class="acc">
 								<?php
-									if (isset($_SESSION['username']))
-									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
+									if (isset($_SESSION['usernameCustomer']))
+									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
 									<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
 									else
 										echo '<div class="dropdown pull-right accounts">
