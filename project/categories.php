@@ -221,6 +221,7 @@
 					<ul class="main-nav nav navbar-nav">
 						<li><a href="homepage.php">Home</a></li>
 						<li class="active"><a href="categories.php">Categories</a></li>
+						<li><a href="products.php">Products</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>

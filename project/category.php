@@ -166,6 +166,7 @@
 					<ul class="main-nav nav navbar-nav">
 						<li><a href="homepage.php">Home</a></li>
 						<li><a href="categories.php">Categories</a></li>
+						<li><a href="products.php">Products</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -266,7 +267,7 @@
 												</div>
 												<div class="product-body">
 													<p class="product-category"><?php echo $catName; ?></p>
-													<h3 class="product-name"><a href="product.php?pro_id=$product['pid']"><?php echo $product['Name']; ?></a></h3>
+													<h3 class="product-name"><a href="product.php?pid=<?php echo $product['pid'];?>"><?php echo $product['Name']; ?></a></h3>
 													<h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
 													<h5>Size: <?php echo $product['Size']; ?></h5>
 												</div>
