@@ -35,7 +35,7 @@
         <![endif]-->
 
         <style>
-            
+
             .orders-row {
                 display: flex;
                 justify-content: space-around;
@@ -68,8 +68,8 @@
                 <div class="container">
                     <ul class="header-links pull-right">
                         <?php
-                            if (isset($_SESSION['username']))
-                                echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>';
+                            if (isset($_SESSION['usernameCustomer']))
+                                echo '<li><a href="#"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>';
                             else
                                 echo '<li><a href="login.php"><i class="fa fa-user-o"></i> Login</a></li>';
                         ?>
@@ -97,7 +97,7 @@
                         <!-- ACCOUNT -->
                         <div class="col-md-3 clearfix">
                             <div class="header-ctn">
-                                
+
                                 <!-- Menu Toogle -->
                                 <div class="menu-toggle">
                                     <a href="#">
@@ -146,7 +146,7 @@
                         <ul class="breadcrumb-tree">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Orders</a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
             <!-- /container -->
         </div>
         <!-- /BREADCRUMB -->
-        
+
         <!-- SECTION -->
         <div class="section">
             <!-- container -->
@@ -164,7 +164,7 @@
                 <div class="row">
                     <!-- STORE -->
                     <div id="store" class="col">
-                        
+
 
                         <!-- store products -->
                         <div class="row">
@@ -178,19 +178,19 @@
                             D.pid, D.Price, D.Quantity, P.Name, P.Picture
                             FROM customers C, orders O, orderdetails D, product P WHERE C.userId = O.userId AND P.pid = D.pid AND D.orderID = O.orderID AND O.userId = '1001'";
                             $result = mysqli_query($db, $sql);
-                            
+
                             while($row = mysqli_fetch_assoc($result)) {
 
                                         ?>
 
                                         <!-- product -->
-                                        
-                                        
-                       
+
+
+
                                         <div align= "center">
                                                 <div class="product-body">
-                                                
-                                                   
+
+
                                                         <table style="width:100%", border=" 1px solid black">
                                                             <tr>
                                                                 <th>OrderID</th>
@@ -203,7 +203,7 @@
                                                                 <th>Product</th>
                                                                 <th>Price</th>
                                                                 <th>Quantity</th>
-                                                               
+
 
                                                             </tr>
                                                             <tr>
@@ -219,9 +219,9 @@
                                                                 <td> <?php echo $row["Quantity"];?> </td>
 
                                                             </tr>
-                                                            
+
                                                             </table>
-                                                            
+
                                                             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['Picture'] ).'">'. "<br>". "<br>"."<br>" . "<br>". "<br>"; ?>
                                                             <div align= "center">
                                                             <form action = "comments.php" method = "POST">
@@ -229,31 +229,31 @@
                                                                 <button> ADD YOUR COMMENT!</button>
                                                             </form>
                                                             </div>
-                                                   
-                                                    
+
+
                                                 </div>
                                         </div>
                                         <!-- /product -->
 
                                         <?php
                                     }
-                                
+
 
                             ?>
-                        
+
                         </div>
                     </div>
                 </div>
             </div>
         </div><!-- /store products -->
 
-                    
+
                     <!-- /STORE -->
-                
+
                 <!-- /row -->
-            
+
             <!-- /container -->
-        
+
         <!-- /SECTION -->
 
 
@@ -323,7 +323,7 @@
                         <div class="col-md-12 text-center">
                             <span class="copyright">
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </span>
                         </div>
@@ -344,12 +344,8 @@
         <script src="js/jquery.zoom.min.js"></script>
         <script src="js/main.js"></script>
 
-        
-                
-        
+
+
+
     </body>
 </html>
-
-   
-
-
