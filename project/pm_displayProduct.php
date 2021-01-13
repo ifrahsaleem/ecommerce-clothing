@@ -52,5 +52,3 @@ while($row = mysqli_fetch_assoc($result))
     }?>
 </body>
 </html>
-
-<!-- <a href="pm_deleteProduct.php?pid=<?php echo $row['pid'];?>"> -->

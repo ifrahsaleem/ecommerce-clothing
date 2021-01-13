@@ -12,8 +12,9 @@ if(isset($_POST['upload']))
     $Size = $_POST['Size'];
     $cid = explode(' ', $_POST['cid'])[1];
     $PMid = $_SESSION['userId'];
+    $isDeleted = false;
 
-    $sql_statement = "INSERT INTO product(cid,  PMid, Name, Price, Quantity, Size, Picture) VALUES('$cid', '$PMid', '$Name', '$Price', '$Quantity', '$Size',  '$Picture')";
+    $sql_statement = "INSERT INTO product(cid,  PMid, Name, Price, Quantity, Size, Picture, isDeleted) VALUES('$cid', '$PMid', '$Name', '$Price', '$Quantity', '$Size',  '$Picture', '$isDeleted')";
     
     $result = mysqli_query($db, $sql_statement);
  
