@@ -167,8 +167,8 @@
 							<div class="header-ctn pull-right">
 								<div class="acc">
 								<?php
-									if (isset($_SESSION['usernameCustomer']))
-									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
+									if (isset($_SESSION['username']))
+									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
 									<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
 									else
 										echo '<div class="dropdown pull-right accounts">
@@ -248,7 +248,7 @@
 			<!-- /container -->
 		</div>
 		<!-- /BREADCRUMB -->
-
+		
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->

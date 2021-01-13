@@ -111,8 +111,8 @@
 							<div class="header-ctn pull-right">
 								<div class="acc">
 								<?php
-									if (isset($_SESSION['usernameCustomer']))
-									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["usernameCustomer"] . '!</a></li>
+									if (isset($_SESSION['username']))
+									echo '<li><a href="accountInfo.php"><i class="fa fa-user-o"></i> Welcome, ' . $_SESSION["username"] . '!</a></li>
 									<li><a href="userlogout.php"><i class="fa fa-user-o"></i> LOG OUT</a></li>';
 									else
 										echo '<div class="dropdown pull-right accounts">
@@ -247,7 +247,7 @@
 									$order = $_POST['order'];
 									$sql = $sql . " AND Price BETWEEN $priceMin AND $priceMax ORDER BY Price $order";
 								}
-
+								
 								$result = $conn->query($sql);
 								if ($result->num_rows > 0) {
 									while ($product = $result->fetch_assoc()) {
@@ -266,21 +266,9 @@
 												</div>
 												<div class="product-body">
 													<p class="product-category"><?php echo $catName; ?></p>
-													<h3 class="product-name"><a href="#"><?php echo $product['Name']; ?></a></h3>
+													<h3 class="product-name"><a href="product.php?pro_id=$product['pid']"><?php echo $product['Name']; ?></a></h3>
 													<h4 class="product-price">₺<?php echo $product['Price']; ?></h4>
 													<h5>Size: <?php echo $product['Size']; ?></h5>
-													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-													</div>
 												</div>
 											</div>
 										</div>

@@ -1,7 +1,7 @@
 <?php
 
  session_start();
-
+ 
 if(isset($_POST['username'] , $_POST['password'] , $_POST['email_address']))
     {
 		$conn = new mysqli('localhost', 'root', '', 'onlinesstore');
@@ -12,7 +12,7 @@ if(isset($_POST['username'] , $_POST['password'] , $_POST['email_address']))
         $Username = $_POST['username'];
         $Password = $_POST['password'];
         $email = $_POST['email_address'];
-
+        
 
         $sql_statement = "INSERT INTO customers(Username,Password, Email, isGuest) VALUES ('$Username', '$Password', '$email', '1')";
 
@@ -30,8 +30,8 @@ if(isset($_POST['username'] , $_POST['password'] , $_POST['email_address']))
             echo 'window.location.href = "signup.php";';
             echo '</script>';
 		}
-
+       
     }
 
-
+  
 ?>
